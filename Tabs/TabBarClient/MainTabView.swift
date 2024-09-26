@@ -53,7 +53,7 @@ struct MainTabView: View {
                             Text("Create Venue")
                         }
                         .tag(2)
-                }
+				}
             }
             
             if user != nil {

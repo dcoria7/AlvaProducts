@@ -33,8 +33,13 @@ struct UploadPostView: View {
                 Spacer()
 
                 Button {
+					print("is uploading....")
                     Task {
-                        try await viewModel.uploadPost(caption: viewModel.caption)
+						if try await viewModel.uploadPost(caption: viewModel.caption) {
+							print("finished")
+						} else {
+							print("something went wrong")
+						}
                         clearPostDataAndReturnToFeed()
                     }
                 } label: {

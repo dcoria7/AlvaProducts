@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Deprecated
 struct InitView: View {
     
     @EnvironmentObject var contentViewModel: ContentViewModel

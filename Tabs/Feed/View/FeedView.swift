@@ -33,11 +33,12 @@ struct FeedView: View {
                 .padding(.top, 8)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarColor(backgroundColor: .gray, tintColor: .black)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Image("instagram-black")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    Text("Alva")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
                         .frame(width: 100)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -59,6 +60,11 @@ struct FeedView: View {
                     try await viewModel.fetchPosts()
                 }
             }
+			.refreshable {
+				Task {
+					try await viewModel.fetchPosts()
+				}
+			}
             .navigationDestination(isPresented: $profileTapped) {
                 LoginView(user: user)
             }
