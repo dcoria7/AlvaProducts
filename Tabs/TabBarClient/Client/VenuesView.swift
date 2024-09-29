@@ -18,7 +18,7 @@ struct VenuesView: View {
     
     
     var body: some View {
-        NavigationView {
+		NavigationStack {
             ZStack {
                 ScrollView(.vertical) {
                     LazyVGrid(columns: vGridLayout) {
@@ -28,9 +28,8 @@ struct VenuesView: View {
                             }
                             ForEach(venues) { venue in
                                 if venue.available && venue.active {
-                                    NavigationLink(destination: VenueDetailView(venue: venue)) {
+									NavigationLink(value: venue) {
                                         GridVenue(venue: venue)
-                                        
                                     }
                                 }
                             }
@@ -46,7 +45,7 @@ struct VenuesView: View {
                             }
                             ForEach(venues) { venue in
                                 if venue.available && !venue.active {
-                                    NavigationLink(destination: VenueDetailView(venue: venue)) {
+									NavigationLink(value: venue) {
                                         GridVenue(venue: venue)
                                     }
                                 }
@@ -56,12 +55,14 @@ struct VenuesView: View {
                         .font(.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    
                 }
             }
             .padding(.horizontal, 10)
             .background(Color.gray)
             .navigationTitle(Text("Tiendas"))
+			.navigationDestination(for: Venue.self) { venue in
+				VenueDetailView(userId: venue.userId ?? "", venue: venue)
+			}
         }
     }
 }

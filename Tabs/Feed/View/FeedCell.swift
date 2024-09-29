@@ -17,86 +17,115 @@ struct FeedCell: View {
     var body: some View {
         VStack {
             
-            HStack {
-                if let venue = post.venue {
-                    CircularUsersImageView(post: post, size: .xSmall)
-                    Text(venue.title)
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                }
-                Spacer()
-            }
-            .padding(.leading, 10)
+//            HStack {
+//                if let venue = post.venue {
+//                    CircularUsersImageView(post: post, size: .xSmall)
+//                    Text(venue.title)
+//                        .font(.footnote)
+//                        .fontWeight(.semibold)
+//                }
+//                Spacer()
+//            }
+//            .padding(.leading, 10)
 
-            // post image
-            KFImage(URL(string: post.imageUrl)!)
-                .placeholder {
-                    ProgressView()
-                        .frame(width: 100)
-                }
-                .resizable()
-                .scaledToFill()
-                .frame(height: 400)
-                .clipShape(Rectangle())
+			// post image
+			KFImage(URL(string: post.imageUrl)!)
+				.placeholder {
+					ProgressView()
+						.frame(width: 100)
+				}
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.clipShape(Rectangle())
             
             // action buttons
-            HStack(spacing: 16) {
-                Button {
-                    onLikeTapped()
-                } label: {
-                    if let user {
-                        Image(systemName: "heart")
-                            .imageScale(.large)
-                            .symbolVariant(post.liked?.contains(user.id) ?? false ? .fill : .none)
-                            .foregroundColor(post.liked?.contains(user.id) ?? false ? Color(.systemRed) : .primary)
-                    }
-                }
-                Button {
-                    print("Comment post")
-
-                } label: {
-                    Image(systemName: "bubble.right")
-                        .imageScale(.large)
-                }
-                Button {
-                    print("Share post")
-
-                } label: {
-                    Image(systemName: "paperplane")
-                        .imageScale(.large)
-                }
-                Spacer()
-            }
-            .padding(.leading, 10)
-            .padding(.top, 4)
-            .foregroundColor(.primary)
+//            HStack(spacing: 16) {
+//                Button {
+//                    onLikeTapped()
+//                } label: {
+//                    if let user {
+//                        Image(systemName: "heart")
+//                            .imageScale(.large)
+//                            .symbolVariant(post.liked?.contains(user.id) ?? false ? .fill : .none)
+//                            .foregroundColor(post.liked?.contains(user.id) ?? false ? Color(.systemRed) : .primary)
+//                    }
+//                }
+//                Button {
+//                    print("Comment post")
+//
+//                } label: {
+//                    Image(systemName: "bubble.right")
+//                        .imageScale(.large)
+//                }
+//                Button {
+//                    print("Share post")
+//
+//                } label: {
+//                    Image(systemName: "paperplane")
+//                        .imageScale(.large)
+//                }
+//                Spacer()
+//            }
+//            .padding(.leading, 10)
+//            .padding(.top, 4)
+//            .foregroundColor(.primary)
 
             // likes label
-            Text("\(post.likes) likes")
-                .font(.footnote)
-                .fontWeight(.semibold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 10)
-                .padding(.top, 1)
+//            Text("\(post.likes) likes")
+//                .font(.footnote)
+//                .fontWeight(.semibold)
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                .padding(.leading, 10)
+//                .padding(.top, 1)
             // caption label
             HStack {
-                Text("\(post.venue?.title ?? "") ")
-                    .fontWeight(.semibold) +
-                Text(post.caption)
+				if let venue = post.venue {
+					CircularUsersImageView(post: post, size: .xSmall)
+					VStack(alignment: .leading) {
+						Text(venue.title)
+							.font(.footnote)
+							.fontWeight(.semibold)
+						
+						Text(post.caption)
+							.font(.footnote)
+							.frame(maxWidth: .infinity, alignment: .leading)
+							.padding(.top, 1)
+					}
+				}
+				Spacer()
             }
-            .font(.footnote)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 10)
-            .padding(.top, 1)
+			.padding(.leading, 10)
+			
             
             Text(post.timestamp.dateValue().elapsedTime())
-                .font(.footnote)
+				.font(.footnote)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(.gray)
+				.foregroundColor(.black.opacity(0.6))
                 .padding(.leading, 10)
                 .padding(.top, 1)
         }
     }
+						 
+	@ViewBuilder
+	private func makeShareIcon() -> some View {
+		Button {
+			print("Share post")
+			
+		} label: {
+			Image(systemName: "paperplane")
+				.resizable()
+				.frame(width: 50, height: 50)
+				.padding()
+				.background(Color.blue)
+				.foregroundColor(.black)
+				.clipShape(Circle())
+		}
+		
+		
+		Circle()
+			.foregroundColor(.red)
+			.frame(width: 20, height: 20)
+	}
 }
 
 struct FeedCell_Previews: PreviewProvider {

@@ -18,10 +18,9 @@ struct GridVenue: View {
                     
                     image
                         .resizable()
-                        .scaledToFill()
-                        .frame(height: 140)
-                        .aspectRatio(2/3, contentMode: .fill)
-//                        .clipped()
+						.aspectRatio(contentMode: .fit)
+						.frame(height: 140)
+                        .clipped()
                         .overlay(venue.active ? .clear : Color.gray.opacity(0.8))
                 }, placeholder:  {
                     ProgressView()

@@ -511,6 +511,7 @@
 		85A78EBB2CA4F34700C60504 /* TabBarAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				85A78E772CA4F34700C60504 /* Admin */,
 				85A78EBA2CA4F34700C60504 /* MainView.swift */,
 			);
 			path = TabBarAdmin;
@@ -519,6 +520,7 @@
 		85A78EBD2CA4F34700C60504 /* TabBarClient */ = {
 			isa = PBXGroup;
 			children = (
+				85A78E7D2CA4F34700C60504 /* Client */,
 				85A78EBC2CA4F34700C60504 /* MainTabView.swift */,
 			);
 			path = TabBarClient;
@@ -653,8 +655,6 @@
 		85A78EEA2CA4F34700C60504 /* AlvaProducts */ = {
 			isa = PBXGroup;
 			children = (
-				85A78E772CA4F34700C60504 /* Admin */,
-				85A78E7D2CA4F34700C60504 /* Client */,
 				85A78E832CA4F34700C60504 /* Init */,
 				85A78E8F2CA4F34700C60504 /* Login */,
 				85A78E942CA4F34700C60504 /* Models */,
@@ -1041,13 +1041,14 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dc.AlvaProducts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dc.AlvaProducts.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1071,13 +1072,14 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dc.AlvaProducts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dc.AlvaProducts.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

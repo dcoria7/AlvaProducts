@@ -1,8 +1,6 @@
 //
 //  PostService.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 06/06/23.
 //
 
 import Firebase
@@ -28,20 +26,13 @@ struct PostService {
         return posts
     }
 
-    static func fetchUserPosts(collectionPosts: [Post], uid: String) async throws -> [Post] {
+    static func fetchUserPosts(uid: String) async throws -> [Post] {
         var posts = [Post]()
         let snapshot = try await postsCollection.whereField("ownerUid", isEqualTo: uid).order(by: "timestamp", descending: true).getDocuments()
         do {
-            posts = collectionPosts
-            
-            for (i, item) in posts.enumerated() {
-                let postUser = try await UserService.fetchUser(withUid: uid)
-//                let likedSnapshot = try await snapshot.documents[i].reference.collection("liked").getDocuments()
-//                
-//                posts[i].liked = likedSnapshot.documents.map({ $0.documentID })
-                posts[i].user = postUser
-                
-            }
+			for i in snapshot.documents.indices {
+				try posts.append(snapshot.documents[i].data(as: Post.self))
+			}
         } catch {
             print("error")
         }

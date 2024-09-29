@@ -1,8 +1,6 @@
 //
 //  ProfileHeaderView.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 04/06/23.
 //
 
 import Kingfisher
@@ -18,27 +16,27 @@ struct ProfileHeaderView: View {
             HStack {
                 CircularProfileImageView(user: viewModel.user, venue: viewModel.venue, size: .large)
                 Spacer()
-                UserStatView(value: viewModel.postsCount, title: "Posts")
-                UserStatView(value: 1, title: "Followers")
-                UserStatView(value: 2, title: "Following")
+//                UserStatView(value: viewModel.postsCount, title: "Posts")
+//                UserStatView(value: 1, title: "Followers")
+//                UserStatView(value: 2, title: "Following")
+				
+				// Name and Bio
+				VStack(alignment: .leading, spacing: 4) {
+					let fullname = viewModel.user.username
+					Text(fullname)
+						.font(.headline)
+						.fontWeight(.semibold)
+					
+					let venue = viewModel.venue.title
+						Text(venue)
+						.font(.footnote)
+					
+				}
+				.frame(maxWidth: .infinity, alignment: .leading)
+				.padding(.horizontal)
             }
             .padding(.horizontal)
-            //                .padding(.bottom, 4)
-
-            // Name and Bio
-            VStack(alignment: .leading, spacing: 4) {
-                let fullname = viewModel.user.username
-                Text(fullname)
-                    .font(.footnote)
-                    .fontWeight(.semibold)
-                
-                if let bio = viewModel.user.bio {
-                    Text(bio)
-                        .font(.footnote)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
+			.padding(.bottom, 4)
 
             // Action Button
             Button {

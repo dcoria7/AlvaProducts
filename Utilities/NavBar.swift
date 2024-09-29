@@ -21,6 +21,10 @@ struct NavigationBarColor: ViewModifier {
 		UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
 		UINavigationBar.appearance().compactAppearance = coloredAppearance
 		UINavigationBar.appearance().tintColor = tintColor
+		
+		let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+		tabBarAppearance.configureWithDefaultBackground()
+		UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
 	}
 	
 	func body(content: Content) -> some View {

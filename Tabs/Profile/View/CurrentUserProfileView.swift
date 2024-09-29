@@ -8,24 +8,42 @@
 import SwiftUI
 
 struct CurrentUserProfileView: View {
-    let user: User
-    let venue: Venue
-    
-    var body: some View {
-        NavigationStack {
-            ProfileView(user: user, venue: venue)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            AuthService.shared.signOut()
-                        } label: {
-                            Image(systemName: "line.3.horizontal")
-                                .foregroundColor(.primary)
-                        }
-                    }
-                }
-        }
-    }
+	let user: User
+	let venue: Venue
+	
+	@State private var logoutTapped: Bool = false
+	
+	// TODO: Localize
+	let alertTitle: String = "Cerrar Sesión?"
+	
+	var body: some View {
+		NavigationStack {
+			ProfileView(user: user, venue: venue)
+				.toolbar {
+					ToolbarItem(placement: .navigationBarTrailing) {
+						Button {
+							logoutTapped.toggle()
+						} label: {
+							Image(systemName: "person")
+								.imageScale(.large)
+						}
+					}
+				}
+				.alert(
+					alertTitle,
+					isPresented: $logoutTapped
+				) {
+					Button(role: .destructive) {
+						AuthService.shared.signOut()
+					} label: {
+						Text("Logout")
+					}
+					Button(role: .cancel) { } label: {
+						Text("Cancelar")
+					}
+				}
+		}
+	}
 }
 
 struct CurrentUserProfileView_Previews: PreviewProvider {

@@ -13,6 +13,9 @@ struct FeedView: View {
     @State private var profileTapped: Bool = false
     @State private var logoutTapped: Bool = false
     @StateObject var viewModel = FeedViewModel()
+	
+	// TODO: Localize
+	let alertTitle: String = "Cerrar Sesión?"
     
     let user: User?
     
@@ -68,11 +71,18 @@ struct FeedView: View {
             .navigationDestination(isPresented: $profileTapped) {
                 LoginView(user: user)
             }
-            .alert("Cerrar Sesión?", isPresented: $logoutTapped) {
-                Button("OK", role: .cancel) {
-                    AuthService.shared.signOut()
-                }
-                Button("Cancelar", role: .destructive) { }
+			.alert(
+				alertTitle,
+				isPresented: $logoutTapped
+			) {
+				Button(role: .destructive) {
+					AuthService.shared.signOut()
+				} label: {
+					Text("Logout")
+				}
+				Button(role: .cancel) { } label: {
+					Text("Cancelar")
+				}
             }
             .background(Color.gray)
         }

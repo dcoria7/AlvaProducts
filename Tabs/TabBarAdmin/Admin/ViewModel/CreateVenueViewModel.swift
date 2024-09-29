@@ -111,7 +111,7 @@ class CreateVenueViewModel: ObservableObject {
 
 }
 
-struct Venue: Codable, Identifiable {
+struct Venue: Codable, Identifiable, Hashable {
     @DocumentID var id: String?
     var title: String
     var imageURLString: String = ""

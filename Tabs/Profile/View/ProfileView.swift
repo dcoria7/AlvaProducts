@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 struct ProfileView: View {
     @StateObject var viewModel: PostGridViewModel
-    @FirestoreQuery(collectionPath: "posts") var postsCollection: [Post]
 
     let user: User
     let venue: Venue
@@ -22,26 +21,25 @@ struct ProfileView: View {
     }
 
     var body: some View {
-        ScrollView {
-            // header
-            ProfileHeaderView()
-            // post grid view
-            PostGridView(posts: postsCollection)
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("\(self.user.username) - \(venue.title) ")
-        .refreshable {
-            Task {
-                try await viewModel.fetchUserPosts(posts: postsCollection)
-            }
-        }
-        .environmentObject(viewModel)
-        .onAppear {
-            print("DEBUG: Post count: \(viewModel.posts.count)")
-            Task {
-                try await viewModel.fetchUserPosts(posts: postsCollection)
-            }
-        }
+		VStack {
+			// header
+			ProfileHeaderView()
+			
+			// post grid view
+			PostGridView(posts: viewModel.posts)
+			
+			Spacer()
+			Text("Menu here")
+		}
+		.navigationBarTitleDisplayMode(.inline)
+		.navigationTitle("\(self.user.username) - \(venue.title) ")
+		.environmentObject(viewModel)
+		.onAppear {
+			print("DEBUG: Post count: \(viewModel.posts.count)")
+			Task {
+				try await viewModel.fetchUserPosts()
+			}
+		}
     }
 }
 
