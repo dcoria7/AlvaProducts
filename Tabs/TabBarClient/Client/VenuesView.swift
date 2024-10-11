@@ -58,7 +58,7 @@ struct VenuesView: View {
                 }
             }
             .padding(.horizontal, 10)
-            .background(Color.gray)
+			.setDefaultBackgroundColor()
             .navigationTitle(Text("Tiendas"))
 			.navigationDestination(for: Venue.self) { venue in
 				VenueDetailView(userId: venue.userId ?? "", venue: venue)

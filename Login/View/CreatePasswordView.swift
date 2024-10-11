@@ -19,7 +19,7 @@ struct CreatePasswordView: View {
                 .padding(.top)
             Text("Your password must be at least 6 characters in length")
                 .font(.footnote)
-                .foregroundColor(.gray)
+				.foregroundColor(.green)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             SecureField("Password", text: $viewModel.password)

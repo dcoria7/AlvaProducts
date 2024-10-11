@@ -6,26 +6,24 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct GridVenue: View {
     var venue: Venue
     
     var body: some View {
         VStack {
-            AsyncImage(
-                url: URL(string: venue.imageURLString),
-                content: { image in
-                    
-                    image
-                        .resizable()
-						.aspectRatio(contentMode: .fit)
-						.frame(height: 140)
-                        .clipped()
-                        .overlay(venue.active ? .clear : Color.gray.opacity(0.8))
-                }, placeholder:  {
-                    ProgressView()
-                        .frame(width: 100)
-                })
+			KFImage(URL(string: venue.imageURLString))
+				.placeholder {
+					ProgressView()
+						.frame(width: 100)
+				}
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(height: 140)
+				.clipped()
+				.overlay(venue.active ? .clear : Color.gray.opacity(0.8))
+                
         }
         .cornerRadius(10)
     }

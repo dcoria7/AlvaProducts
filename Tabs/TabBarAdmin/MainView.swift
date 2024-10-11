@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// DEPRECATED
+
 struct MainView: View {
     let user: User?
     let venue: Venue?

@@ -1,4 +1,5 @@
 {
+  "originHash" : "b22b2b2ed495f23f39212e2c87c1b008d4fbbd006d4d317c00832d8958322884",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -82,6 +83,15 @@
       }
     },
     {
+      "identity" : "jdstatusbarnotification",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/calimarkus/JDStatusBarNotification.git",
+      "state" : {
+        "revision" : "ffde0bab9fd0b47e426e696b5fe53deefc781452",
+        "version" : "2.2.2"
+      }
+    },
+    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
@@ -127,5 +137,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

@@ -58,7 +58,7 @@ struct EditProfileView: View {
                             .scaledToFill()
                             .frame(width: 80, height: 80)
                             .foregroundColor(.white)
-                            .background(.gray)
+							.background(.green)
                             .clipShape(Circle())
                     } else {
                         CircularProfileImageView(user: viewModel.user, venue: nil, size: .large)

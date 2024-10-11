@@ -8,69 +8,84 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     @State private var showEditProfile = false
-    @EnvironmentObject var viewModel: PostGridViewModel
+	@ObservedObject var viewModel: PostGridViewModel
 
     var body: some View {
         VStack(spacing: 10) {
-            // pic and status
+            
+			// pic and status
             HStack {
                 CircularProfileImageView(user: viewModel.user, venue: viewModel.venue, size: .large)
                 Spacer()
 //                UserStatView(value: viewModel.postsCount, title: "Posts")
-//                UserStatView(value: 1, title: "Followers")
-//                UserStatView(value: 2, title: "Following")
 				
-				// Name and Bio
 				VStack(alignment: .leading, spacing: 4) {
-					let fullname = viewModel.user.username
-					Text(fullname)
-						.font(.headline)
-						.fontWeight(.semibold)
+					Text("Nombre de usuario:") // TODO: Make an enum
+						.foregroundStyle(.gray)
+						.font(.footnote)
+						.fontWeight(.light)
 					
-					let venue = viewModel.venue.title
-						Text(venue)
+					Text(viewModel.user.username)
+						.foregroundStyle(.white)
+						.font(.title3)
+						.fontWeight(.bold)
+					
+					Text("Nombre de la tienda:")
+						.foregroundStyle(.gray)
+						.font(.footnote)
+						.fontWeight(.light)
+					
+					Text(viewModel.venue.title)
+						.foregroundStyle(.white)
+						.font(.footnote)
+					
+					Text("Correo:")
+						.foregroundStyle(.gray)
+						.font(.footnote)
+						.fontWeight(.light)
+					
+					Text(viewModel.user.email)
+						.foregroundStyle(.white)
 						.font(.footnote)
 					
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 				.padding(.horizontal)
+				
+				Toggle("Esta abierto?", isOn: $viewModel.isActive) // TODO: Localize
+					.foregroundColor(.red)
+					.toggleStyle(SwitchToggleStyle(tint: .blue))
+					.onChange(of: viewModel.isActive) { oldValue, newValue in
+						Task {
+							try await viewModel.updateVenueStatus(newValue: newValue)
+						}
+					}
+					
             }
             .padding(.horizontal)
 			.padding(.bottom, 4)
+			.padding(.top, 10)
 
             // Action Button
-            Button {
-                if viewModel.user.isCurrentUser {
-                    showEditProfile.toggle()
-                } else {
-                    print("Follow user...")
-                }
-            } label: {
-                Text(viewModel.user.isCurrentUser ? "Edit Profile" : "Follow")
+			Button {
+				showEditProfile.toggle()
+			} label: {
+                Text("Edit Profile")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .frame(width: 360, height: 34)
-                    .background(viewModel.user.isCurrentUser ? nil : Color(.systemBlue))
-                    .foregroundColor(viewModel.user.isCurrentUser ? nil : .white)
+					.background(.white)
                     .cornerRadius(6)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .strokeBorder(viewModel.user.isCurrentUser ?
-                                Color.gray : .clear, lineWidth: 1
-                            )
+                            .strokeBorder(Color.white, lineWidth: 1)
                     )
             }
 
             Divider()
         }
         .fullScreenCover(isPresented: $showEditProfile) {
-            EditProfileView(user: viewModel.user)
+			EditProfileView(user: viewModel.user)
         }
-    }
-}
-
-struct ProfileHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileHeaderView()
     }
 }

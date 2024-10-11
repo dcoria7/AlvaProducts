@@ -1,15 +1,16 @@
 //
 //  ProfileView.swift
-//  InstaSwift
+//  AlvaProducts
 //
-//  Created by Bruno Rangel on 02/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
+import Kingfisher
 import FirebaseFirestore
 
 struct ProfileView: View {
-    @StateObject var viewModel: PostGridViewModel
+    @StateObject var viewModel: PostClientGridViewModel
 
     let user: User
     let venue: Venue
@@ -17,22 +18,17 @@ struct ProfileView: View {
     init(user: User, venue: Venue) {
         self.user = user
         self.venue = venue
-        _viewModel = StateObject(wrappedValue: PostGridViewModel(user: user, venue: venue))
+		_viewModel = StateObject(wrappedValue: PostClientGridViewModel(userId: user.id, venue: venue))
     }
 
     var body: some View {
 		VStack {
 			// header
-			ProfileHeaderView()
+			ProfileHeaderView(viewModel: PostGridViewModel(user: user, venue: venue))
 			
-			// post grid view
-			PostGridView(posts: viewModel.posts)
-			
-			Spacer()
-			Text("Menu here")
+			ProfileGeneralView(viewModel: viewModel)
 		}
-		.navigationBarTitleDisplayMode(.inline)
-		.navigationTitle("\(self.user.username) - \(venue.title) ")
+		.setDefaultBackgroundColor()
 		.environmentObject(viewModel)
 		.onAppear {
 			print("DEBUG: Post count: \(viewModel.posts.count)")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 import FirebaseFirestore
 
 struct VenueDetailView: View {
@@ -21,13 +22,22 @@ struct VenueDetailView: View {
     
     var body: some View {
         VStack {
-			PostGridView(posts: viewModel.posts)
 			
-			Spacer()
-			Text("Menu here")
+			KFImage(URL(string: venue.imageURLString))
+				.placeholder {
+					ProgressView()
+						.frame(width: 100)
+				}
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(height: 210)
+				.clipped()
+				.padding(.top, 10)
+			
+			ProfileGeneralView(viewModel: viewModel)
 		}
+		.setDefaultBackgroundColor()
 		.navigationBarTitleDisplayMode(.inline)
-		.navigationTitle("\(venue.title) ")
 		.environmentObject(viewModel)
 		.onAppear {
 			print("DEBUG: Post count: \(viewModel.posts.count)")

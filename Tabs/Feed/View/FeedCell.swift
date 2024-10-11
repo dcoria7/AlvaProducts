@@ -11,82 +11,37 @@ import SwiftUI
 
 struct FeedCell: View {
     let post: Post
-    let user: User?
+//    let user: User?
     let onLikeTapped: () -> Void
     
     var body: some View {
         VStack {
             
-//            HStack {
-//                if let venue = post.venue {
-//                    CircularUsersImageView(post: post, size: .xSmall)
-//                    Text(venue.title)
-//                        .font(.footnote)
-//                        .fontWeight(.semibold)
-//                }
-//                Spacer()
-//            }
-//            .padding(.leading, 10)
-
 			// post image
 			KFImage(URL(string: post.imageUrl)!)
 				.placeholder {
 					ProgressView()
 						.frame(width: 100)
+						.tint(.white)
 				}
 				.resizable()
-				.aspectRatio(contentMode: .fit)
+				.scaledToFill()
+				.frame(height: 550) // Set the frame size
+				.clipped() // Crop the image to the frame size
 				.clipShape(Rectangle())
-            
-            // action buttons
-//            HStack(spacing: 16) {
-//                Button {
-//                    onLikeTapped()
-//                } label: {
-//                    if let user {
-//                        Image(systemName: "heart")
-//                            .imageScale(.large)
-//                            .symbolVariant(post.liked?.contains(user.id) ?? false ? .fill : .none)
-//                            .foregroundColor(post.liked?.contains(user.id) ?? false ? Color(.systemRed) : .primary)
-//                    }
-//                }
-//                Button {
-//                    print("Comment post")
-//
-//                } label: {
-//                    Image(systemName: "bubble.right")
-//                        .imageScale(.large)
-//                }
-//                Button {
-//                    print("Share post")
-//
-//                } label: {
-//                    Image(systemName: "paperplane")
-//                        .imageScale(.large)
-//                }
-//                Spacer()
-//            }
-//            .padding(.leading, 10)
-//            .padding(.top, 4)
-//            .foregroundColor(.primary)
-
-            // likes label
-//            Text("\(post.likes) likes")
-//                .font(.footnote)
-//                .fontWeight(.semibold)
-//                .frame(maxWidth: .infinity, alignment: .leading)
-//                .padding(.leading, 10)
-//                .padding(.top, 1)
+			
             // caption label
             HStack {
 				if let venue = post.venue {
 					CircularUsersImageView(post: post, size: .xSmall)
 					VStack(alignment: .leading) {
 						Text(venue.title)
-							.font(.footnote)
-							.fontWeight(.semibold)
+							.foregroundStyle(.white)
+							.font(.title3)
+							.fontWeight(.bold)
 						
 						Text(post.caption)
+							.foregroundStyle(.white)
 							.font(.footnote)
 							.frame(maxWidth: .infinity, alignment: .leading)
 							.padding(.top, 1)
@@ -98,9 +53,10 @@ struct FeedCell: View {
 			
             
             Text(post.timestamp.dateValue().elapsedTime())
+				.foregroundStyle(.white) // TODO: make a modifier text
 				.font(.footnote)
                 .frame(maxWidth: .infinity, alignment: .leading)
-				.foregroundColor(.black.opacity(0.6))
+				.foregroundColor(.white.opacity(0.4))
                 .padding(.leading, 10)
                 .padding(.top, 1)
         }
@@ -130,7 +86,7 @@ struct FeedCell: View {
 
 struct FeedCell_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCell(post: Post.mockPosts[1], user: User.mockUsers[1]) {
+        FeedCell(post: Post.mockPosts[1]) {
             print("On Like Tapped")
         }
     }

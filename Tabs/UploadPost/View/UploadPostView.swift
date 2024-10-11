@@ -22,12 +22,12 @@ struct UploadPostView: View {
                 Button {
                     clearPostDataAndReturnToFeed()
                 } label: {
-                    Text("Cancel")
+                    Text("Cancel") // TODO: Localize
                 }
 
                 Spacer()
 
-                Text("New Post")
+                Text("New Post") // TODO: Localize
                     .fontWeight(.semibold)
 
                 Spacer()
@@ -43,7 +43,7 @@ struct UploadPostView: View {
                         clearPostDataAndReturnToFeed()
                     }
                 } label: {
-                    Text("Upload")
+                    Text("Enviar") // TODO: Localize
                         .fontWeight(.semibold)
                 }
             }
@@ -58,13 +58,13 @@ struct UploadPostView: View {
                         .frame(width: 100, height: 100)
                         .clipped()
                 }
-                TextField("Enter your caption...", text: $viewModel.caption, axis: .vertical)
+                TextField("Agrega la descripción ...", text: $viewModel.caption, axis: .vertical)
             }
             .padding()
 
             Spacer()
         }
-        .background(Color.gray)
+		.setDefaultBackgroundColor()
         .onAppear {
             imagePickerPresented.toggle()
         }

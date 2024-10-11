@@ -19,7 +19,7 @@ struct AddEmailView: View {
                 .padding(.top)
             Text("You'll use this e-mail to sign in to your account")
                 .font(.footnote)
-                .foregroundColor(.gray)
+				.foregroundColor(.green)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             TextField("E-mail", text: $viewModel.email)

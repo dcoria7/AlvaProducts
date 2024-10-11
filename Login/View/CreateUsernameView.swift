@@ -19,7 +19,7 @@ struct CreateUsernameView: View {
                 .padding(.top)
             Text("Pick a username for your new account. You can always change it later.")
                 .font(.footnote)
-                .foregroundColor(.gray)
+				.foregroundColor(.green)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             TextField("Username", text: $viewModel.username)

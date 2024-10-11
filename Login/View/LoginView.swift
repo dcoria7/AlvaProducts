@@ -65,7 +65,7 @@ struct LoginView: View {
                     .overlay {
                         Text("OR")
                             .font(.footnote)
-                            .foregroundColor(.gray)
+							.foregroundColor(.green)
                             .padding(.horizontal)
                             .background(Color.primary.colorInvert())
                     }

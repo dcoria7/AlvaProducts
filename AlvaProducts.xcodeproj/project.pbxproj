@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8572D3122CADACC100A37922 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 8572D3112CADACC100A37922 /* JDStatusBarNotification */; };
 		85A78EED2CA4F34700C60504 /* CreateVenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */; };
 		85A78EEE2CA4F34700C60504 /* CreateVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E762CA4F34700C60504 /* CreateVenueView.swift */; };
 		85A78EEF2CA4F34700C60504 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E782CA4F34700C60504 /* GridView.swift */; };
@@ -49,8 +50,6 @@
 		85A78F142CA4F34700C60504 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EAF2CA4F34700C60504 /* ProfileHeaderView.swift */; };
 		85A78F152CA4F34700C60504 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EB02CA4F34700C60504 /* ProfileView.swift */; };
 		85A78F162CA4F34700C60504 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EB22CA4F34700C60504 /* EditProfileViewModel.swift */; };
-		85A78F172CA4F34700C60504 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EB52CA4F34700C60504 /* SearchView.swift */; };
-		85A78F182CA4F34700C60504 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EB72CA4F34700C60504 /* SearchViewModel.swift */; };
 		85A78F192CA4F34700C60504 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EBA2CA4F34700C60504 /* MainView.swift */; };
 		85A78F1A2CA4F34700C60504 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EBC2CA4F34700C60504 /* MainTabView.swift */; };
 		85A78F1B2CA4F34700C60504 /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78EBE2CA4F34700C60504 /* UploadPostView.swift */; };
@@ -84,6 +83,9 @@
 		85A78F372CA4F34700C60504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A78EE72CA4F34700C60504 /* Assets.xcassets */; };
 		85A78F382CA4F34700C60504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A78EE82CA4F34700C60504 /* GoogleService-Info.plist */; };
 		85B98F642BC6570700863EA8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 85B98F632BC6570700863EA8 /* Kingfisher */; };
+		85C171D82CB458C9006C37F3 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C171D72CB458C2006C37F3 /* View+Extensions.swift */; };
+		85C171DD2CB5C48D006C37F3 /* ProfileGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C171DC2CB5C48D006C37F3 /* ProfileGeneralView.swift */; };
+		85C171E02CB6F997006C37F3 /* AppCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C171DF2CB6F994006C37F3 /* AppCheckManager.swift */; };
 		85E5B5752BBE339900A908C3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 85E5B5742BBE339900A908C3 /* FirebaseAnalytics */; };
 		85E5B5772BBE339900A908C3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 85E5B5762BBE339900A908C3 /* FirebaseAnalyticsOnDeviceConversion */; };
 		85E5B5792BBE339900A908C3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 85E5B5782BBE339900A908C3 /* FirebaseAnalyticsSwift */; };
@@ -172,8 +174,6 @@
 		85A78EAF2CA4F34700C60504 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		85A78EB02CA4F34700C60504 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		85A78EB22CA4F34700C60504 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
-		85A78EB52CA4F34700C60504 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		85A78EB72CA4F34700C60504 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		85A78EBA2CA4F34700C60504 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		85A78EBC2CA4F34700C60504 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		85A78EBE2CA4F34700C60504 /* UploadPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
@@ -208,6 +208,9 @@
 		85A78EE72CA4F34700C60504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85A78EE82CA4F34700C60504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85A78EE92CA4F34700C60504 /* MV_Project.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = MV_Project.entitlements; sourceTree = "<group>"; };
+		85C171D72CB458C2006C37F3 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		85C171DC2CB5C48D006C37F3 /* ProfileGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGeneralView.swift; sourceTree = "<group>"; };
+		85C171DF2CB6F994006C37F3 /* AppCheckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCheckManager.swift; sourceTree = "<group>"; };
 		85E5B5622BBE328D00A908C3 /* AlvaProducts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlvaProducts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -231,6 +234,7 @@
 				85E5B61B2BBF201900A908C3 /* FirebaseStorage in Frameworks */,
 				85E5B5F12BBF201800A908C3 /* FirebaseAppCheck in Frameworks */,
 				85E5B58C2BBF1E2300A908C3 /* FirebaseDatabaseSwift in Frameworks */,
+				8572D3122CADACC100A37922 /* JDStatusBarNotification in Frameworks */,
 				85E5B5902BBF1E2300A908C3 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				85E5B5F72BBF201800A908C3 /* FirebaseAuthCombine-Community in Frameworks */,
 				85E5B6012BBF201900A908C3 /* FirebaseFirestore in Frameworks */,
@@ -419,6 +423,7 @@
 		85A78EA52CA4F34700C60504 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				85C171DE2CB6F986006C37F3 /* Settings */,
 				85A78EA02CA4F34700C60504 /* Components */,
 				85A78EA12CA4F34700C60504 /* ImageUploader.swift */,
 				85A78EA22CA4F34700C60504 /* PostService.swift */,
@@ -477,35 +482,11 @@
 		85A78EB42CA4F34700C60504 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				85C171D92CB5C437006C37F3 /* GeneralView */,
 				85A78EB12CA4F34700C60504 /* View */,
 				85A78EB32CA4F34700C60504 /* ViewModel */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		85A78EB62CA4F34700C60504 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				85A78EB52CA4F34700C60504 /* SearchView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		85A78EB82CA4F34700C60504 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				85A78EB72CA4F34700C60504 /* SearchViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		85A78EB92CA4F34700C60504 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				85A78EB62CA4F34700C60504 /* View */,
-				85A78EB82CA4F34700C60504 /* ViewModel */,
-			);
-			path = Search;
 			sourceTree = "<group>";
 		};
 		85A78EBB2CA4F34700C60504 /* TabBarAdmin */ = {
@@ -556,7 +537,6 @@
 			children = (
 				85A78EAC2CA4F34700C60504 /* Feed */,
 				85A78EB42CA4F34700C60504 /* Profile */,
-				85A78EB92CA4F34700C60504 /* Search */,
 				85A78EBB2CA4F34700C60504 /* TabBarAdmin */,
 				85A78EBD2CA4F34700C60504 /* TabBarClient */,
 				85A78EC22CA4F34700C60504 /* UploadPost */,
@@ -593,6 +573,7 @@
 		85A78ECC2CA4F34700C60504 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				85C171D72CB458C2006C37F3 /* View+Extensions.swift */,
 				85A78ECB2CA4F34700C60504 /* DateExtension.swift */,
 			);
 			path = Extensions;
@@ -674,6 +655,22 @@
 		85A78EEB2CA4F34700C60504 /* Products */ = {
 			isa = PBXGroup;
 			name = Products;
+			sourceTree = "<group>";
+		};
+		85C171D92CB5C437006C37F3 /* GeneralView */ = {
+			isa = PBXGroup;
+			children = (
+				85C171DC2CB5C48D006C37F3 /* ProfileGeneralView.swift */,
+			);
+			path = GeneralView;
+			sourceTree = "<group>";
+		};
+		85C171DE2CB6F986006C37F3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				85C171DF2CB6F994006C37F3 /* AppCheckManager.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		85E5B5592BBE328D00A908C3 = {
@@ -761,6 +758,7 @@
 				85E5B61A2BBF201900A908C3 /* FirebaseStorage */,
 				85E5B61C2BBF201900A908C3 /* FirebaseStorageCombine-Community */,
 				85B98F632BC6570700863EA8 /* Kingfisher */,
+				8572D3112CADACC100A37922 /* JDStatusBarNotification */,
 			);
 			productName = AlvaProducts;
 			productReference = 85E5B5622BBE328D00A908C3 /* AlvaProducts.app */;
@@ -793,6 +791,7 @@
 			packageReferences = (
 				85E5B5732BBE339900A908C3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				85B98F622BC6570700863EA8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				8572D3102CADACC100A37922 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
 			);
 			productRefGroup = 85E5B5632BBE328D00A908C3 /* Products */;
 			projectDirPath = "";
@@ -842,7 +841,6 @@
 				85A78F232CA4F34700C60504 /* HTTPError.swift in Sources */,
 				85A78F272CA4F34700C60504 /* HTTPRequestBuilder.swift in Sources */,
 				85A78F112CA4F34700C60504 /* CatalogListScreen.swift in Sources */,
-				85A78F172CA4F34700C60504 /* SearchView.swift in Sources */,
 				85A78EFC2CA4F34700C60504 /* LoginViewModel.swift in Sources */,
 				85A78EEE2CA4F34700C60504 /* CreateVenueView.swift in Sources */,
 				85A78EF52CA4F34700C60504 /* AlvaProductsApp.swift in Sources */,
@@ -874,9 +872,9 @@
 				85A78F052CA4F34700C60504 /* PostGridView.swift in Sources */,
 				85A78F1A2CA4F34700C60504 /* MainTabView.swift in Sources */,
 				85A78F192CA4F34700C60504 /* MainView.swift in Sources */,
+				85C171D82CB458C9006C37F3 /* View+Extensions.swift in Sources */,
 				85A78EFA2CA4F34700C60504 /* CreateUsernameView.swift in Sources */,
 				85A78F162CA4F34700C60504 /* EditProfileViewModel.swift in Sources */,
-				85A78F182CA4F34700C60504 /* SearchViewModel.swift in Sources */,
 				85A78F2A2CA4F34700C60504 /* ViewModifiers.swift in Sources */,
 				85A78F0E2CA4F34700C60504 /* FeedCell.swift in Sources */,
 				85A78F0B2CA4F34700C60504 /* PostService.swift in Sources */,
@@ -889,6 +887,7 @@
 				85A78F2C2CA4F34700C60504 /* Constants.swift in Sources */,
 				85A78F0D2CA4F34700C60504 /* UserService.swift in Sources */,
 				85A78F342CA4F34700C60504 /* Sequence+Extension.swift in Sources */,
+				85C171DD2CB5C48D006C37F3 /* ProfileGeneralView.swift in Sources */,
 				85A78F122CA4F34700C60504 /* CurrentUserProfileView.swift in Sources */,
 				85A78F1E2CA4F34700C60504 /* NetworkConstantsProtocol.swift in Sources */,
 				85A78F352CA4F34700C60504 /* String+Extension.swift in Sources */,
@@ -899,6 +898,7 @@
 				85A78F262CA4F34700C60504 /* HTTPRequest.swift in Sources */,
 				85A78F0A2CA4F34700C60504 /* ImageUploader.swift in Sources */,
 				85A78F1F2CA4F34700C60504 /* FieldError.swift in Sources */,
+				85C171E02CB6F997006C37F3 /* AppCheckManager.swift in Sources */,
 				85A78F2E2CA4F34700C60504 /* Data+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1041,7 +1041,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1072,7 +1072,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1111,6 +1111,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8572D3102CADACC100A37922 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.2;
+			};
+		};
 		85B98F622BC6570700863EA8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1130,6 +1138,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8572D3112CADACC100A37922 /* JDStatusBarNotification */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8572D3102CADACC100A37922 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
+			productName = JDStatusBarNotification;
+		};
 		85B98F632BC6570700863EA8 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 85B98F622BC6570700863EA8 /* XCRemoteSwiftPackageReference "Kingfisher" */;

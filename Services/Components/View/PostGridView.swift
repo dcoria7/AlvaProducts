@@ -26,6 +26,11 @@ struct PostGridView: View {
 						SinglePostView(postId: post.id)
 					} label: {
 						KFImage(URL(string: post.imageUrl))
+							.placeholder({ _ in
+								ProgressView()
+									.frame(width: 100)
+									.tint(.white)
+							})
 							.resizable()
 							.scaledToFill()
 							.frame(width: 150, height: 100, alignment: .center)

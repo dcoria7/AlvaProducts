@@ -17,7 +17,7 @@ struct SinglePostView: View {
     var body: some View {
         VStack {
             if let post = viewModel.post {
-                FeedCell(post: post, user: contentViewModel.currentUser!) {
+                FeedCell(post: post) {
                     Task {
                         try await viewModel.toggleLike(uid: contentViewModel.currentUser!.id)
                     }

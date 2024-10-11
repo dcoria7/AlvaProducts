@@ -28,3 +28,24 @@ struct UserService {
         return snapshot.documents.compactMap({ try? $0.data(as: Venue.self) }).first
     }
 }
+
+extension UserService {
+	private static let venuesCollection = Firestore.firestore().collection("venues")
+	
+	static func updateVenueActive(userID: String, newValue: Bool) {
+		
+		venuesCollection .whereField("userId", isEqualTo: userID).getDocuments { (result, error) in
+			if error == nil{
+				for document in result!.documents {
+					document.reference.updateData([
+						"active": newValue
+					])
+					print("Document successfully updated")
+				}
+			} else {
+				print(error)
+			}
+		}
+	}
+	
+}

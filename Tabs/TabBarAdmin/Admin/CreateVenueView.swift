@@ -48,7 +48,7 @@ struct CreateVenueView: View {
                 }
             }
         }
-//        .background(Color.gray)
+		.setDefaultBackgroundColor()
     }
     
     @ViewBuilder

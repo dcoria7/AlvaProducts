@@ -24,7 +24,7 @@ struct FeedView: View {
             ScrollView {
                 LazyVStack(spacing: 24) {
                     ForEach(viewModel.posts) {post in
-                        FeedCell(post: post, user: user) {
+                        FeedCell(post: post) {
                             if let user {
                                 Task {
                                     try await viewModel.toggleLike(postId: post.id, uid: user.id)
@@ -33,10 +33,9 @@ struct FeedView: View {
                         }
                     }
                 }
-                .padding(.top, 8)
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarColor(backgroundColor: .gray, tintColor: .black)
+			.navigationBarColor(tintColor: .white)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("Alva")
@@ -84,7 +83,7 @@ struct FeedView: View {
 					Text("Cancelar")
 				}
             }
-            .background(Color.gray)
+			.setDefaultBackgroundColor()
         }
         
     }
