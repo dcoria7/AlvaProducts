@@ -9,7 +9,7 @@ import Firebase
 import Foundation
 import FirebaseFirestore
 
-struct Post: Identifiable, Codable {
+struct Post: Identifiable, Codable, Hashable {
     
     let id: String
     let ownerUid: String

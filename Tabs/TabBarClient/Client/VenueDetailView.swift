@@ -12,29 +12,42 @@ import FirebaseFirestore
 struct VenueDetailView: View {
     var venue: Venue
 	var userId: String
-	@StateObject var viewModel: PostClientGridViewModel
+	@StateObject var viewModel = PostClientGridViewModel()
 	
 	init(userId: String, venue: Venue) {
 		self.userId = userId
 		self.venue = venue
-		_viewModel = StateObject(wrappedValue: PostClientGridViewModel(userId: userId, venue: venue))
+//		_viewModel = StateObject(wrappedValue: PostClientGridViewModel(userId: userId, venue: venue))
 	}
     
     var body: some View {
-        VStack {
-			
-			KFImage(URL(string: venue.imageURLString))
-				.placeholder {
-					ProgressView()
-						.frame(width: 100)
+		ScrollView {
+			VStack {
+				HStack {
+					KFImage(URL(string: venue.imageURLString))
+						.placeholder {
+							ProgressView()
+								.frame(width: 100)
+						}
+						.resizable()
+						.scaledToFit()
+						.frame(height: 100)
+						.clipped()
+						.padding(.leading, 10)
+					
+					ProfileGeneralView(viewModel: viewModel)
 				}
-				.resizable()
-				.aspectRatio(contentMode: .fit)
-				.frame(height: 210)
-				.clipped()
-				.padding(.top, 10)
-			
-			ProfileGeneralView(viewModel: viewModel)
+				
+				// post image
+				KFImage(URL(string: viewModel.menuImage))
+					.placeholder {
+						ProgressView()
+							.frame(width: 100)
+					}
+					.resizable()
+					.scaledToFit()
+					.clipped() // Crop the image to the frame size
+			}
 		}
 		.setDefaultBackgroundColor()
 		.navigationBarTitleDisplayMode(.inline)
@@ -42,7 +55,8 @@ struct VenueDetailView: View {
 		.onAppear {
 			print("DEBUG: Post count: \(viewModel.posts.count)")
 			Task {
-				try await viewModel.fetchUserPosts()
+//				try await viewModel.fetchUserPosts()
+				try await viewModel.fetchVenue(userId: userId)
 			}
 		}
     }

@@ -49,7 +49,7 @@ class AuthService {
         do {
             userSession = Auth.auth().currentUser
             guard let currentUid = userSession?.uid else { return }
-            currentVenue = try await UserService.fetchVenue(withUid: currentUid)
+			currentVenue = try await UserService.fetchVenue(withId: currentUid)
             currentUser = try await UserService.fetchUser(withUid: currentUid)
             
         } catch {

@@ -10,7 +10,7 @@ import Kingfisher
 import FirebaseFirestore
 
 struct ProfileView: View {
-    @StateObject var viewModel: PostClientGridViewModel
+    @StateObject var viewModel = PostClientGridViewModel()
 
     let user: User
     let venue: Venue
@@ -18,22 +18,35 @@ struct ProfileView: View {
     init(user: User, venue: Venue) {
         self.user = user
         self.venue = venue
-		_viewModel = StateObject(wrappedValue: PostClientGridViewModel(userId: user.id, venue: venue))
+//		_viewModel = StateObject(wrappedValue: PostClientGridViewModel(userId: user.id, venue: venue))
     }
 
     var body: some View {
 		VStack {
 			// header
-			ProfileHeaderView(viewModel: PostGridViewModel(user: user, venue: venue))
+			ProfileHeaderView(viewModel: viewModel)
 			
-			ProfileGeneralView(viewModel: viewModel)
+			ScrollView {
+				ProfileGeneralView(viewModel: viewModel)
+				
+				// post image
+				KFImage(URL(string: viewModel.getMenuImage()))
+					.placeholder {
+						ProgressView()
+							.frame(width: 100)
+					}
+					.resizable()
+					.scaledToFit()
+					.clipped() // Crop the image to the frame size
+			}
 		}
 		.setDefaultBackgroundColor()
 		.environmentObject(viewModel)
 		.onAppear {
 			print("DEBUG: Post count: \(viewModel.posts.count)")
 			Task {
-				try await viewModel.fetchUserPosts()
+//				try await viewModel.fetchUserPosts()
+				try await viewModel.fetchVenue(userId: user.id)
 			}
 		}
     }

@@ -21,7 +21,7 @@ struct UserService {
         return try snapshot.data(as: User.self)
     }
     
-    static func fetchVenue(withUid userId: String) async throws -> Venue? {
+    static func fetchVenue(withId userId: String) async throws -> Venue? {
         let venuesCollection = Firestore.firestore().collection("venues")
         
         let snapshot = try await venuesCollection.whereField("userId", isEqualTo: userId).getDocuments()

@@ -41,20 +41,6 @@ struct PostGridView: View {
 			}
 		}
 		.frame(height: 100)
-		
-//		LazyHGrid(rows: gridItems, spacing: 1) {
-//            ForEach(posts) { post in
-//                NavigationLink {
-//                    SinglePostView(postId: post.id)
-//                } label: {
-//                    KFImage(URL(string: post.imageUrl))
-//                        .resizable()
-//                        .scaledToFill()
-//                        .frame(width: imageDimension, height: imageDimension)
-//                        .clipped()
-//                }
-//            }
-//        }
     }
 }
 

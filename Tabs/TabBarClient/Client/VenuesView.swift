@@ -16,7 +16,6 @@ struct VenuesView: View {
         GridItem(.adaptive(minimum: 170))
     ]
     
-    
     var body: some View {
 		NavigationStack {
             ZStack {

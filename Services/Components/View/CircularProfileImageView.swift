@@ -29,7 +29,7 @@ enum ProfileImageSize {
 }
 
 struct CircularProfileImageView: View {
-    let user: User
+//    let user: User
     let venue: Venue?
     let size: ProfileImageSize
 
@@ -79,6 +79,6 @@ struct CircularUsersImageView: View {
 
 struct CircularProfileImageView_Previews: PreviewProvider {
     static var previews: some View {
-        CircularProfileImageView(user: User.mockUsers[0], venue: User.mockVenue[0], size: .large)
+        CircularProfileImageView(venue: User.mockVenue[0], size: .large)
     }
 }

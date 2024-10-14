@@ -27,6 +27,7 @@ struct SinglePostView: View {
                 ProgressView()
             }
         }
+		.setDefaultBackgroundColor()
         .onAppear {
             Task {
                 try await viewModel.fetchPostData(postId: postId)

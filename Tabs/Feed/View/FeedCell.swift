@@ -10,6 +10,7 @@ import Kingfisher
 import SwiftUI
 
 struct FeedCell: View {
+	
     let post: Post
 //    let user: User?
     let onLikeTapped: () -> Void
@@ -30,26 +31,32 @@ struct FeedCell: View {
 				.clipped() // Crop the image to the frame size
 				.clipShape(Rectangle())
 			
-            // caption label
-            HStack {
-				if let venue = post.venue {
-					CircularUsersImageView(post: post, size: .xSmall)
-					VStack(alignment: .leading) {
-						Text(venue.title)
-							.foregroundStyle(.white)
-							.font(.title3)
-							.fontWeight(.bold)
-						
-						Text(post.caption)
-							.foregroundStyle(.white)
-							.font(.footnote)
-							.frame(maxWidth: .infinity, alignment: .leading)
-							.padding(.top, 1)
+			NavigationLink(value: post) {
+				// caption label
+				HStack {
+					if let venue = post.venue {
+						CircularUsersImageView(post: post, size: .xSmall)
+						VStack(alignment: .leading) {
+							Text(venue.title)
+								.foregroundStyle(.white)
+								.font(.title3)
+								.fontWeight(.bold)
+							
+							Text(post.caption)
+								.foregroundStyle(.white)
+								.font(.footnote)
+								.frame(maxWidth: .infinity, alignment: .leading)
+								.padding(.top, 1)
+						}
 					}
+					Spacer()
 				}
-				Spacer()
-            }
-			.padding(.leading, 10)
+				.padding(.leading, 10)
+			}
+			.navigationDestination(for: Post.self) { post in
+				VenueDetailView(userId: post.venue?.userId ?? "", venue: post.venue!)
+			}
+			
 			
             
             Text(post.timestamp.dateValue().elapsedTime())

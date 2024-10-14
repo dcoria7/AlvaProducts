@@ -61,7 +61,7 @@ struct EditProfileView: View {
 							.background(.green)
                             .clipShape(Circle())
                     } else {
-                        CircularProfileImageView(user: viewModel.user, venue: nil, size: .large)
+                        CircularProfileImageView(venue: nil, size: .large)
                     }
                     Text("Edit profile picture")
                         .font(.footnote)
