@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import FirebaseFirestore
+import Firebase
 
 struct ProfileView: View {
     @StateObject var viewModel = PostClientGridViewModel()
@@ -43,10 +44,11 @@ struct ProfileView: View {
 		.setDefaultBackgroundColor()
 		.environmentObject(viewModel)
 		.onAppear {
-			print("DEBUG: Post count: \(viewModel.posts.count)")
 			Task {
 //				try await viewModel.fetchUserPosts()
 				try await viewModel.fetchVenue(userId: user.id)
+				
+				Tracker.trackProfileEvent(id: venue.id ?? "", name: venue.title)
 			}
 		}
     }

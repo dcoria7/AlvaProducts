@@ -54,7 +54,7 @@ struct FeedCell: View {
 				.padding(.leading, 10)
 			}
 			.navigationDestination(for: Post.self) { post in
-				VenueDetailView(userId: post.venue?.userId ?? "", venue: post.venue!)
+				VenueDetailView(userId: post.venue?.userId ?? "", venue: post.venue!) // TODO: use coordinator instead
 			}
 			
 			

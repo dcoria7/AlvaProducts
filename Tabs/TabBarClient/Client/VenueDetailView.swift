@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import FirebaseFirestore
+import Firebase
 
 struct VenueDetailView: View {
     var venue: Venue
@@ -53,10 +54,12 @@ struct VenueDetailView: View {
 		.navigationBarTitleDisplayMode(.inline)
 		.environmentObject(viewModel)
 		.onAppear {
-			print("DEBUG: Post count: \(viewModel.posts.count)")
+			
 			Task {
 //				try await viewModel.fetchUserPosts()
 				try await viewModel.fetchVenue(userId: userId)
+				
+				Tracker.trackVenueDetailEvent(id: userId, name: venue.title)
 			}
 		}
     }

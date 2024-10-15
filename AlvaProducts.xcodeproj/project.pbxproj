@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85412FA62CBDD90D004CAB4D /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA52CBDD905004CAB4D /* Tracker.swift */; };
 		8572D3122CADACC100A37922 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 8572D3112CADACC100A37922 /* JDStatusBarNotification */; };
 		85A78EED2CA4F34700C60504 /* CreateVenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */; };
 		85A78EEE2CA4F34700C60504 /* CreateVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E762CA4F34700C60504 /* CreateVenueView.swift */; };
@@ -132,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		85412FA52CBDD905004CAB4D /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueViewModel.swift; sourceTree = "<group>"; };
 		85A78E762CA4F34700C60504 /* CreateVenueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueView.swift; sourceTree = "<group>"; };
 		85A78E782CA4F34700C60504 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -270,6 +272,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85412FA42CBDD8FE004CAB4D /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				85412FA52CBDD905004CAB4D /* Tracker.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		85A78E752CA4F34700C60504 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +646,7 @@
 		85A78EEA2CA4F34700C60504 /* AlvaProducts */ = {
 			isa = PBXGroup;
 			children = (
+				85412FA42CBDD8FE004CAB4D /* Analytics */,
 				85A78E832CA4F34700C60504 /* Init */,
 				85A78E8F2CA4F34700C60504 /* Login */,
 				85A78E942CA4F34700C60504 /* Models */,
@@ -898,6 +909,7 @@
 				85A78F262CA4F34700C60504 /* HTTPRequest.swift in Sources */,
 				85A78F0A2CA4F34700C60504 /* ImageUploader.swift in Sources */,
 				85A78F1F2CA4F34700C60504 /* FieldError.swift in Sources */,
+				85412FA62CBDD90D004CAB4D /* Tracker.swift in Sources */,
 				85C171E02CB6F997006C37F3 /* AppCheckManager.swift in Sources */,
 				85A78F2E2CA4F34700C60504 /* Data+Utils.swift in Sources */,
 			);

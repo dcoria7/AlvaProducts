@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Firebase
 
 struct FeedView: View {
 //    @Environment(\.colorScheme) var colorScheme
@@ -58,6 +59,7 @@ struct FeedView: View {
                 }
             }
             .onAppear {
+				Tracker.trackFeedEvent()
                 Task {
                     try await viewModel.fetchPosts()
                 }

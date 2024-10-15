@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Firebase
 
 struct VenuesView: View {
     @FirestoreQuery(collectionPath: "venues") var venues: [Venue]
@@ -61,6 +62,9 @@ struct VenuesView: View {
             .navigationTitle(Text("Tiendas"))
 			.navigationDestination(for: Venue.self) { venue in
 				VenueDetailView(userId: venue.userId ?? "", venue: venue)
+			}
+			.onAppear {
+				Tracker.trackVenuesEvent()
 			}
         }
     }

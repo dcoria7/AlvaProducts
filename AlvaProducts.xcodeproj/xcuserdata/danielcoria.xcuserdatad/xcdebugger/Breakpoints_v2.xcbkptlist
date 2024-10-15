@@ -430,8 +430,8 @@
             filePath = "Tabs/TabBarClient/Client/VenueDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -450,36 +450,6 @@
             endingLineNumber = "37"
             landmarkName = "updateVenueActive(userID:newValue:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C16BBD1C-5BF1-4166-9471-E0D7913B6015 - 8bfdb15748b841e3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static AlvaProducts.UserService.updateVenueActive(userID: Swift.String, newValue: Swift.Bool) -&gt; ()"
-                  moduleName = "AlvaProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danielcoria/Documents/DCProjects/NewProjectAlva/AlvaProducts/Services/UserService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37">
-               </Location>
-               <Location
-                  uuid = "C16BBD1C-5BF1-4166-9471-E0D7913B6015 - b17bd26c1a66ac3f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static AlvaProducts.UserService.updateVenueActive(userID: Swift.String, newValue: Swift.Bool) -&gt; ()"
-                  moduleName = "AlvaProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danielcoria/Documents/DCProjects/NewProjectAlva/AlvaProducts/Services/UserService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
