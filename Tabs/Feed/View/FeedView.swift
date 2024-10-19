@@ -36,7 +36,7 @@ struct FeedView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-			.navigationBarColor(tintColor: .white)
+			.navigationBarColor(tintColor: UIColor.customBlack())
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("Alva")

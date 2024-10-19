@@ -16,12 +16,17 @@ struct VenuesView: View {
     var vGridLayout = [
         GridItem(.adaptive(minimum: 170))
     ]
+	
+	private let fixedColumns = [
+		GridItem(.fixed(170)),
+		GridItem(.fixed(170))
+	]
     
     var body: some View {
 		NavigationStack {
             ZStack {
                 ScrollView(.vertical) {
-                    LazyVGrid(columns: vGridLayout) {
+					LazyVGrid(columns: fixedColumns, spacing: 20) {
                         Section("Abiertos") {
                             if $venues.error != nil {
                                 Text("There was an error: ")
@@ -36,6 +41,7 @@ struct VenuesView: View {
                         }
                         .foregroundColor(.green)
                         .font(.title)
+						.fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
                         
@@ -51,8 +57,9 @@ struct VenuesView: View {
                                 }
                             }
                         }
-                        .foregroundColor(.indigo)
+						.foregroundColor(.gray)
                         .font(.title)
+						.fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }

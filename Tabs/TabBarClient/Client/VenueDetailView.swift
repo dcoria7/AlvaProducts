@@ -33,7 +33,8 @@ struct VenueDetailView: View {
 						.resizable()
 						.scaledToFit()
 						.frame(height: 100)
-						.clipped()
+						.clipped() // Crop the image to the frame size
+						.cornerRadius(10)
 						.padding(.leading, 10)
 					
 					ProfileGeneralView(viewModel: viewModel)

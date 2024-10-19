@@ -14,8 +14,20 @@ extension View {
 	}
 	
 	@ViewBuilder
+	@inlinable func isHidden(_ hidden: Bool, remove: Bool = true) -> some View {
+		if hidden {
+			if !remove {
+				self.hidden()
+			}
+		} else {
+			self
+		}
+	}
+	
+	@ViewBuilder
 	@inlinable func setDefaultBackgroundColor() -> some View {
-		background(Color(red: 58/255, green: 58/255, blue: 60/255))
+//		background(Color(red: 248/255, green: 248/255, blue: 248/255))
+		background(Color.make(rgb: "FBFBF9", alpha: 1.0))
 	}
 	
 	@inlinable public func onChange(isTrue value: Bool, perform action: @escaping () -> Void) -> some View {

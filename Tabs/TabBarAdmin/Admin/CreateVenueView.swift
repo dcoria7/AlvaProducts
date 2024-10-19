@@ -79,18 +79,95 @@ struct CreateVenueView: View {
             )
             .keyboardType(.asciiCapable)
             .disableAutocorrection(true)
-            .foregroundColor(.black)
+			.foregroundColor(Color.customBlack())
             .padding(.leading)
-            .border(.black)
+			.border(Color.customBlack())
             .padding(.vertical)
-            .onSubmit {
-                viewModel.insertVenue(title: viewModel.venueName, userID: userSelected)
-            }
+			
+			TextField(
+				"Descripcion del venue",
+				text: Binding(
+					get: { viewModel.venueDescription },
+					set: { viewModel.venueDescription = $0
+					})
+			)
+			.keyboardType(.asciiCapable)
+			.disableAutocorrection(true)
+			.foregroundColor(Color.customBlack())
+			.padding(.leading)
+			.border(Color.customBlack())
+			.padding(.vertical)
+			
+			TextField(
+				"Telefono",
+				text: Binding(
+					get: { viewModel.venuePhone },
+					set: { viewModel.venuePhone = $0
+					})
+			)
+			.keyboardType(.asciiCapable)
+			.disableAutocorrection(true)
+			.foregroundColor(Color.customBlack())
+			.padding(.leading)
+			.border(Color.customBlack())
+			.padding(.vertical)
+			
+			TextField(
+				"Horario",
+				text: Binding(
+					get: { viewModel.venueSchedule },
+					set: { viewModel.venueSchedule = $0
+					})
+			)
+			.keyboardType(.asciiCapable)
+			.disableAutocorrection(true)
+			.foregroundColor(Color.customBlack())
+			.padding(.leading)
+			.border(Color.customBlack())
+			.padding(.vertical)
+			
+			TextField(
+				"Network",
+				text: Binding(
+					get: { viewModel.venueNetwork },
+					set: { viewModel.venueNetwork = $0
+					})
+			)
+			.keyboardType(.asciiCapable)
+			.disableAutocorrection(true)
+			.foregroundColor(Color.customBlack())
+			.padding(.leading)
+			.border(Color.customBlack())
+			.padding(.vertical)
+			
+			TextField(
+				"Tipo de negocio",
+				text: Binding(
+					get: { viewModel.venueType },
+					set: { viewModel.venueType = $0
+					})
+			)
+			.keyboardType(.asciiCapable)
+			.disableAutocorrection(true)
+			.foregroundColor(Color.customBlack())
+			.padding(.leading)
+			.border(Color.customBlack())
+			.padding(.vertical)
             
             makeImagePicker()
 
         }
         .padding(.horizontal, 40)
+//		.onSubmit {
+//			viewModel.insertVenue(title: viewModel.venueName,
+//								  description: viewModel.venueDescription,
+//								  userID: userSelected,
+//								  phone: viewModel.venuePhone,
+//								  network: viewModel.venueNetwork,
+//								  schedule: viewModel.venueSchedule,
+//								  typeOfVenue: viewModel.venueType
+//			)
+//		}
     }
     
     @ViewBuilder
@@ -119,7 +196,14 @@ struct CreateVenueView: View {
     @ViewBuilder
     private func makeSaveButton() -> some View {
         Button(action: {
-            viewModel.insertVenue(title: viewModel.venueName, userID: userSelected)
+			viewModel.insertVenue(title: viewModel.venueName,
+								  description: viewModel.venueDescription,
+								  userID: userSelected,
+								  phone: viewModel.venuePhone,
+								  network: viewModel.venueNetwork,
+								  schedule: viewModel.venueSchedule,
+								  typeOfVenue: viewModel.venueType
+			)
         }) {
             Text("Guardar")
         }

@@ -66,6 +66,24 @@ class PostClientGridViewModel: ObservableObject {
 	@Published var posts = [Post]()
 	@Published var isActive: Bool = false
 	
+	var tags: [String] = []
+	
+	var phone: String {
+		venue?.phone ?? ""
+	}
+	
+	var network: String {
+		venue?.network ?? ""
+	}
+	
+	var schedule: String {
+		venue?.schedule ?? ""
+	}
+	
+	var type: String {
+		venue?.typeOfVenue ?? ""
+	}
+	
 	var postsCount: Int {
 		posts.count
 	}
@@ -115,11 +133,29 @@ class PostClientGridViewModel: ObservableObject {
 	@MainActor
 	func fetchVenue(userId: String) async throws {
 		do {
+			tags = []
 			self.venue = try await UserService.fetchVenue(withId: userId)
 			self.menuImage = getMenuImage()
 			self.description = getVenueDescription()
 			guard let isActive = self.venue?.active else { return }
 			self.isActive = isActive
+			
+			if !phone.isEmpty {
+				tags.append("📞 \(phone)")
+			}
+			
+			if !network.isEmpty {
+				tags.append("🌐 \(network)")
+			}
+			
+			if !schedule.isEmpty {
+				tags.append("⏰ \(schedule)")
+			}
+			
+			if !type.isEmpty {
+				tags.append("\(type)")
+			}
+			
 		} catch {
 			print("handle error")
 		}

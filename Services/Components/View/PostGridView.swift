@@ -29,7 +29,7 @@ struct PostGridView: View {
 							.placeholder({ _ in
 								ProgressView()
 									.frame(width: 100)
-									.tint(.white)
+									.tint(.green())
 							})
 							.resizable()
 							.scaledToFill()

@@ -15,84 +15,97 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $selectedIndex) {
-            FeedView(user: user)
-                .onAppear {
-                    selectedIndex = 0
-                }
-                .tabItem {
-                    Image(systemName: "house")
-                }
-                .tag(0)
-            
-//            SearchView()
-//                .onAppear {
-//                    selectedIndex = 1
-//                }
-//                .tabItem {
-//                    Image(systemName: "magnifyingglass")
-//                }
-//                .tag(1)
-            
-            VenuesView()
-                .onAppear {
-                    selectedIndex = 1
-                }
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                }
-                .tag(1)
-            
-            if let user {
-                if user.email == "dcoria7@gmail.com"{
-                    CreateVenueView()
-                        .onAppear {
-                            selectedIndex = 2
-                        }
-                        .tabItem {
-                            Image(systemName: "command")
-                            Text("Create Venue")
-                        }
-                        .tag(2)
+			Group {
+				FeedView(user: user)
+					.onAppear {
+						selectedIndex = 0
+					}
+					.tabItem {
+						Image(systemName: "house")
+						Text("♣︎")
+							.isHidden(selectedIndex == 0 ? false : true)
+					}
+					.tag(0)
+				
+				//            SearchView()
+				//                .onAppear {
+				//                    selectedIndex = 1
+				//                }
+				//                .tabItem {
+				//                    Image(systemName: "magnifyingglass")
+				//                }
+				//                .tag(1)
+				
+				VenuesView()
+					.onAppear {
+						selectedIndex = 1
+					}
+					.tabItem {
+						Image(systemName: "magnifyingglass")
+						Text("♣︎")
+							.isHidden(selectedIndex == 1 ? false : true)
+					}
+					.tag(1)
+				
+				if let user {
+					if user.email == "dcoria7@gmail.com"{
+						CreateVenueView()
+							.onAppear {
+								selectedIndex = 2
+							}
+							.tabItem {
+								Image(systemName: "command")
+								Text("Create Venue")
+							}
+							.tag(2)
+					}
 				}
-            }
-            
-            if user != nil {
-                UploadPostView(tabIndex: $selectedIndex)
-                    .onAppear {
-                        selectedIndex = 3
-                    }
-                    .tabItem {
-                        Image(systemName: "plus.square")
-                    }
-                    .tag(3)
-            }
-            
-//            Text("Notifications")
-//                .onAppear {
-//                    selectedIndex = 4
-//                }
-//                .tabItem {
-//                    Image(systemName: "heart")
-//                }
-//                .tag(4)
-            
-            if let user, let venue {
-                CurrentUserProfileView(user: user, venue: venue)
-                    .onAppear {
-                        selectedIndex = 4
-                    }
-                    .tabItem {
-                        Image(systemName: "person")
-                    }
-                    .tag(4)
-            }
+				
+				if user != nil {
+					UploadPostView(tabIndex: $selectedIndex)
+						.onAppear {
+							selectedIndex = 3
+						}
+						.tabItem {
+							Image(systemName: "plus.square")
+							Text("♣︎")
+								.isHidden(selectedIndex == 3 ? false : true)
+						}
+						.tag(3)
+				}
+				
+				//            Text("Notifications")
+				//                .onAppear {
+				//                    selectedIndex = 4
+				//                }
+				//                .tabItem {
+				//                    Image(systemName: "heart")
+				//                }
+				//                .tag(4)
+				
+				if let user, let venue {
+					CurrentUserProfileView(user: user, venue: venue)
+						.onAppear {
+							selectedIndex = 4
+						}
+						.tabItem {
+							Image(systemName: "person")
+							Text("♣︎")
+								.isHidden(selectedIndex == 4 ? false : true)
+						}
+						.tag(4)
+				}
+			}
+			.toolbarBackground(Color.make(rgb: "2d3030", alpha: 1.0) ,for: .tabBar)
+			.toolbarBackground(.visible, for: .tabBar)
+			.toolbarColorScheme(.dark, for: .tabBar)
         }
-        .tint(.primary)
+		.tint(Color.customBlack())
     }
 }
 
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView(user: User.mockUsers[0], venue: User.mockVenue[0])
-    }
-}
+//struct MainTabView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainTabView(user: User.mockUsers[0], venue: User.mockVenue[0])
+//    }
+//}

@@ -20,7 +20,7 @@ struct ProfileHeaderView: View {
 					
 					VStack {
 						Text(viewModel.isActive ? "Abierto" : "Cerrado")
-							.foregroundColor(viewModel.isActive ? .green : .indigo)
+							.foregroundColor(viewModel.isActive ? .green : .gray)
 						Toggle("", isOn: $viewModel.isActive)
 							.labelsHidden()
 							.toggleStyle(SwitchToggleStyle(tint: viewModel.isActive ? .green : .indigo))
@@ -35,7 +35,7 @@ struct ProfileHeaderView: View {
 					.overlay(
 						RoundedRectangle(cornerRadius: 15)
 							.stroke(lineWidth: 2)
-							.foregroundColor(viewModel.isActive ? .green : .indigo)
+							.foregroundColor(viewModel.isActive ? .green : .gray)
 					)
 					
 					//                UserStatView(value: viewModel.postsCount, title: "Posts")
@@ -52,26 +52,28 @@ struct ProfileHeaderView: View {
 //						.font(.title3)
 //						.fontWeight(.bold)
 					
-					Text("Nombre de la tienda:")
-						.foregroundStyle(.gray)
-						.font(.footnote)
-						.fontWeight(.light)
-					
 					Text(viewModel.venue?.title ?? "")
-						.foregroundStyle(.white)
-						.font(.footnote)
+						.foregroundStyle(Color.customBlack())
+						.font(.title3)
+						.fontWeight(.bold)
 					
-					Text("Correo:")
+					Text("Nombre de la tienda")
 						.foregroundStyle(.gray)
 						.font(.footnote)
 						.fontWeight(.light)
 					
 					Text(viewModel.user?.email ?? "")
-						.foregroundStyle(.white)
+						.foregroundStyle(Color.customBlack())
+						.font(.title3)
+						.fontWeight(.bold)
+					
+					Text("Correo")
+						.foregroundStyle(.gray)
 						.font(.footnote)
+						.fontWeight(.light)
 					
 				}
-				.frame(maxWidth: .infinity, alignment: .leading)
+				.frame(maxWidth: .infinity, alignment: .top)
 				.padding(.horizontal)
 				
 					
@@ -88,11 +90,11 @@ struct ProfileHeaderView: View {
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .frame(width: 360, height: 34)
-					.background(.white)
+					.background(Color.customWhite())
                     .cornerRadius(6)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .strokeBorder(Color.white, lineWidth: 1)
+							.strokeBorder(Color.customBlack(), lineWidth: 1)
                     )
             }
 

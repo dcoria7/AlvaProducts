@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		85412FA62CBDD90D004CAB4D /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA52CBDD905004CAB4D /* Tracker.swift */; };
+		85412FA82CC2DA58004CAB4D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */; };
+		85412FAB2CC35293004CAB4D /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 85412FAA2CC35293004CAB4D /* WrappingHStack */; };
 		8572D3122CADACC100A37922 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 8572D3112CADACC100A37922 /* JDStatusBarNotification */; };
 		85A78EED2CA4F34700C60504 /* CreateVenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */; };
 		85A78EEE2CA4F34700C60504 /* CreateVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E762CA4F34700C60504 /* CreateVenueView.swift */; };
@@ -134,6 +136,7 @@
 
 /* Begin PBXFileReference section */
 		85412FA52CBDD905004CAB4D /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
+		85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueViewModel.swift; sourceTree = "<group>"; };
 		85A78E762CA4F34700C60504 /* CreateVenueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueView.swift; sourceTree = "<group>"; };
 		85A78E782CA4F34700C60504 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 				85E5B5792BBE339900A908C3 /* FirebaseAnalyticsSwift in Frameworks */,
 				85E5B60D2BBF201900A908C3 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				85E5B60F2BBF201900A908C3 /* FirebaseInstallations in Frameworks */,
+				85412FAB2CC35293004CAB4D /* WrappingHStack in Frameworks */,
 				85E5B5862BBF1E2300A908C3 /* FirebaseAuth in Frameworks */,
 				85E5B6032BBF201900A908C3 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				85E5B5752BBE339900A908C3 /* FirebaseAnalytics in Frameworks */,
@@ -583,6 +587,7 @@
 		85A78ECC2CA4F34700C60504 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */,
 				85C171D72CB458C2006C37F3 /* View+Extensions.swift */,
 				85A78ECB2CA4F34700C60504 /* DateExtension.swift */,
 			);
@@ -770,6 +775,7 @@
 				85E5B61C2BBF201900A908C3 /* FirebaseStorageCombine-Community */,
 				85B98F632BC6570700863EA8 /* Kingfisher */,
 				8572D3112CADACC100A37922 /* JDStatusBarNotification */,
+				85412FAA2CC35293004CAB4D /* WrappingHStack */,
 			);
 			productName = AlvaProducts;
 			productReference = 85E5B5622BBE328D00A908C3 /* AlvaProducts.app */;
@@ -803,6 +809,7 @@
 				85E5B5732BBE339900A908C3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				85B98F622BC6570700863EA8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8572D3102CADACC100A37922 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
+				85412FA92CC35293004CAB4D /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = 85E5B5632BBE328D00A908C3 /* Products */;
 			projectDirPath = "";
@@ -863,6 +870,7 @@
 				85A78F032CA4F34700C60504 /* CircularProfileImageView.swift in Sources */,
 				85A78F332CA4F34700C60504 /* NavBar.swift in Sources */,
 				85A78F222CA4F34700C60504 /* DefaultHTTPSession.swift in Sources */,
+				85412FA82CC2DA58004CAB4D /* UIColor+Extensions.swift in Sources */,
 				85A78F2B2CA4F34700C60504 /* ActivityIndicator.swift in Sources */,
 				85A78F292CA4F34700C60504 /* HTTPSession.swift in Sources */,
 				85A78F142CA4F34700C60504 /* ProfileHeaderView.swift in Sources */,
@@ -1123,6 +1131,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		85412FA92CC35293004CAB4D /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.11;
+			};
+		};
 		8572D3102CADACC100A37922 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
@@ -1150,6 +1166,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		85412FAA2CC35293004CAB4D /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85412FA92CC35293004CAB4D /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
 		8572D3112CADACC100A37922 /* JDStatusBarNotification */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8572D3102CADACC100A37922 /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;

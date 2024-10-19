@@ -18,6 +18,11 @@ class CreateVenueViewModel: ObservableObject {
     let db = Firestore.firestore()
     
     @Published var venueName: String = ""
+	@Published var venueDescription: String = ""
+	@Published var venuePhone: String = ""
+	@Published var venueNetwork: String = ""
+	@Published var venueSchedule: String = ""
+	@Published var venueType: String = ""
     @Published var isSaveDisable: Bool = true
     
     // private
@@ -73,15 +78,27 @@ class CreateVenueViewModel: ObservableObject {
         self.menuImage = Image(uiImage: uiImage)
     }
     
-    func uploadVenueImage(title: String, userID: String) async throws {
+	func uploadVenueImage(title: String, description: String, userID: String, phone: String, network: String, schedule: String, typeOfVenue: String) async throws {
         guard let userImage = self.uiImage else { return }
         guard let menuImage = self.menuUIImage else { return }
         
-        let postRef = Firestore.firestore().collection("venues").document()
+        let postRef = db.collection("venues").document()
         guard let userImageUrl = try await ImageUploader.uploadImage(type: .post, image: userImage) else { return }
         guard let menuImageUrl = try await ImageUploader.uploadImage(type: .post, image: menuImage) else { return }
         
-        let venue = Venue(id: postRef.documentID, title: title, imageURLString: userImageUrl, available: false, date: Date(), active: false, userId: userID, venueDescription: "", menuImage: menuImageUrl)
+		let venue = Venue(id: postRef.documentID,
+						  title: title, imageURLString: userImageUrl,
+						  available: false,
+						  date: Date(),
+						  active: false,
+						  userId: userID,
+						  venueDescription: description,
+						  menuImage: menuImageUrl,
+						  phone: phone,
+						  network: network,
+						  schedule: schedule,
+						  typeOfVenue: typeOfVenue
+		)
         
 //        let post = Post(id: postRef.documentID, ownerUid: uid, caption: caption, likes: 0, imageUrl: imageUrl, timestamp: Timestamp())
         
@@ -89,7 +106,7 @@ class CreateVenueViewModel: ObservableObject {
         try await postRef.setData(encodedPost)
     }
     
-    func insertVenue(title: String, userID: String) {
+	func insertVenue(title: String, description: String, userID: String, phone: String, network: String, schedule: String, typeOfVenue: String) {
         // Create a document in the venues collection
 //        db.collection("venues").addDocument(data: [
 //            "title": title,
@@ -103,7 +120,12 @@ class CreateVenueViewModel: ObservableObject {
 //        ])
         
         Task {
-            try await uploadVenueImage(title: title, userID: userID)
+			do {
+				try await uploadVenueImage(title: title, description: description, userID: userID, phone: phone, network: network, schedule: schedule, typeOfVenue: typeOfVenue)
+			} catch {
+				print("handle error")
+			}
+			
         }
         
         print("----- venue created done")
@@ -121,6 +143,10 @@ struct Venue: Codable, Identifiable, Hashable {
     var userId: String?
     var venueDescription: String?
     var menuImage: String?
+	var phone: String
+	var network: String?
+	var schedule: String
+	var typeOfVenue: String
 }
 
 

@@ -32,6 +32,6 @@ extension User {
     ]
     
     static var mockVenue: [Venue] = [
-        .init(title: "Papas", available: false, date: Date(), active: false)
+		.init(title: "Papas", available: false, date: Date(), active: false, phone: "", network: nil, schedule: "", typeOfVenue: "")
     ]
 }
