@@ -26,8 +26,12 @@ extension View {
 	
 	@ViewBuilder
 	@inlinable func setDefaultBackgroundColor() -> some View {
-//		background(Color(red: 248/255, green: 248/255, blue: 248/255))
 		background(Color.make(rgb: "FBFBF9", alpha: 1.0))
+	}
+	
+	@ViewBuilder
+	@inlinable func setBlackBackgroundColor() -> some View {
+		background(Color.make(rgb: "2d3030", alpha: 1.0))
 	}
 	
 	@inlinable public func onChange(isTrue value: Bool, perform action: @escaping () -> Void) -> some View {

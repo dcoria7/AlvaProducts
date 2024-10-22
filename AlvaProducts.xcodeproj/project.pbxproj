@@ -10,6 +10,9 @@
 		85412FA62CBDD90D004CAB4D /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA52CBDD905004CAB4D /* Tracker.swift */; };
 		85412FA82CC2DA58004CAB4D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */; };
 		85412FAB2CC35293004CAB4D /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 85412FAA2CC35293004CAB4D /* WrappingHStack */; };
+		85412FAE2CC6C109004CAB4D /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FAD2CC6C109004CAB4D /* AppSettingsView.swift */; };
+		85412FB02CC6C2AA004CAB4D /* AppSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FAF2CC6C2A0004CAB4D /* AppSettingsViewModel.swift */; };
+		85412FB52CC73BC6004CAB4D /* TranslucentButtonViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FB42CC73BBE004CAB4D /* TranslucentButtonViewModifier.swift */; };
 		8572D3122CADACC100A37922 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 8572D3112CADACC100A37922 /* JDStatusBarNotification */; };
 		85A78EED2CA4F34700C60504 /* CreateVenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */; };
 		85A78EEE2CA4F34700C60504 /* CreateVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A78E762CA4F34700C60504 /* CreateVenueView.swift */; };
@@ -137,6 +140,9 @@
 /* Begin PBXFileReference section */
 		85412FA52CBDD905004CAB4D /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		85412FAD2CC6C109004CAB4D /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
+		85412FAF2CC6C2A0004CAB4D /* AppSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewModel.swift; sourceTree = "<group>"; };
+		85412FB42CC73BBE004CAB4D /* TranslucentButtonViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentButtonViewModifier.swift; sourceTree = "<group>"; };
 		85A78E742CA4F34700C60504 /* CreateVenueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueViewModel.swift; sourceTree = "<group>"; };
 		85A78E762CA4F34700C60504 /* CreateVenueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueView.swift; sourceTree = "<group>"; };
 		85A78E782CA4F34700C60504 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -282,6 +288,39 @@
 				85412FA52CBDD905004CAB4D /* Tracker.swift */,
 			);
 			path = Analytics;
+			sourceTree = "<group>";
+		};
+		85412FAC2CC6C0D4004CAB4D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				85412FAD2CC6C109004CAB4D /* AppSettingsView.swift */,
+				85412FAF2CC6C2A0004CAB4D /* AppSettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		85412FB12CC73BA1004CAB4D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				85412FB22CC73BAD004CAB4D /* Styles */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		85412FB22CC73BAD004CAB4D /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				85412FB32CC73BB8004CAB4D /* Button */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		85412FB32CC73BB8004CAB4D /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				85412FB42CC73BBE004CAB4D /* TranslucentButtonViewModifier.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		85A78E752CA4F34700C60504 /* ViewModel */ = {
@@ -549,6 +588,7 @@
 		85A78EC32CA4F34700C60504 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				85412FAC2CC6C0D4004CAB4D /* Settings */,
 				85A78EAC2CA4F34700C60504 /* Feed */,
 				85A78EB42CA4F34700C60504 /* Profile */,
 				85A78EBB2CA4F34700C60504 /* TabBarAdmin */,
@@ -651,6 +691,7 @@
 		85A78EEA2CA4F34700C60504 /* AlvaProducts */ = {
 			isa = PBXGroup;
 			children = (
+				85412FB12CC73BA1004CAB4D /* Components */,
 				85412FA42CBDD8FE004CAB4D /* Analytics */,
 				85A78E832CA4F34700C60504 /* Init */,
 				85A78E8F2CA4F34700C60504 /* Login */,
@@ -851,6 +892,7 @@
 				85A78EFD2CA4F34700C60504 /* RegistrationViewModel.swift in Sources */,
 				85A78F212CA4F34700C60504 /* DateExtension.swift in Sources */,
 				85A78EF82CA4F34700C60504 /* CompleteSignUpView.swift in Sources */,
+				85412FB02CC6C2AA004CAB4D /* AppSettingsViewModel.swift in Sources */,
 				85A78F072CA4F34700C60504 /* UserStatView.swift in Sources */,
 				85A78F2D2CA4F34700C60504 /* ControlEndpointModel.swift in Sources */,
 				85A78EF02CA4F34700C60504 /* InitView.swift in Sources */,
@@ -865,6 +907,7 @@
 				85A78EF12CA4F34700C60504 /* VenueDetailView.swift in Sources */,
 				85A78F002CA4F34700C60504 /* StoreModel.swift in Sources */,
 				85A78EFE2CA4F34700C60504 /* Catalog.swift in Sources */,
+				85412FAE2CC6C109004CAB4D /* AppSettingsView.swift in Sources */,
 				85A78EEF2CA4F34700C60504 /* GridView.swift in Sources */,
 				85A78EF32CA4F34700C60504 /* InitContentView.swift in Sources */,
 				85A78F032CA4F34700C60504 /* CircularProfileImageView.swift in Sources */,
@@ -880,6 +923,7 @@
 				85A78F282CA4F34700C60504 /* HTTPResponseMapper.swift in Sources */,
 				85A78F2F2CA4F34700C60504 /* Extensions.swift in Sources */,
 				85A78EF62CA4F34700C60504 /* AuthService.swift in Sources */,
+				85412FB52CC73BC6004CAB4D /* TranslucentButtonViewModifier.swift in Sources */,
 				85A78EF22CA4F34700C60504 /* VenuesView.swift in Sources */,
 				85A78F1D2CA4F34700C60504 /* NetworkConstants.swift in Sources */,
 				85A78F042CA4F34700C60504 /* ISTextFieldModifier.swift in Sources */,

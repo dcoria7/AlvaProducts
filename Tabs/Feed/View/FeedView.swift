@@ -40,18 +40,11 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("Alva")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     
                     Button(action: {
-                        if user != nil {
-                            logoutTapped.toggle()
-                        } else {
-                            profileTapped.toggle()
-                        }
+						profileTapped.toggle()
                     }) {
                         Image(systemName: "person")
                             .imageScale(.large)
@@ -69,9 +62,9 @@ struct FeedView: View {
 					try await viewModel.fetchPosts()
 				}
 			}
-            .navigationDestination(isPresented: $profileTapped) {
-                LoginView(user: user)
-            }
+			.navigationDestination(isPresented: $profileTapped) {
+				AppSettingsView()
+			}
 			.alert(
 				alertTitle,
 				isPresented: $logoutTapped
