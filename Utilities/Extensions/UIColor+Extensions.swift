@@ -32,6 +32,10 @@ extension UIColor {
 		make(rgb: "2d3030", alpha: 1.0)
 	}
 	
+	public static func customWite() -> UIColor {
+		make(rgb: "FBFBF9", alpha: 1.0)
+	}
+	
 	public static func make(rgb: String, alpha: CGFloat) -> UIColor {
 		UIColor(hexString: rgb).withAlphaComponent(alpha)
 	}

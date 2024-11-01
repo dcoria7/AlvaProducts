@@ -27,9 +27,9 @@ struct FeedCell: View {
 							.tint(.green())
 					}
 					.resizable()
+					.frame(maxHeight: 1400)
 					.scaledToFit()
 					.clipped() // Crop the image to the frame size
-//					.frame(height: 550) // Set the frame size
 					.clipShape(Rectangle())
 				
 				// caption label

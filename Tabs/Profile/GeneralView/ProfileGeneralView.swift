@@ -38,22 +38,6 @@ struct ProfileGeneralView: View {
 			}
 			.frame(minWidth: 250, alignment: .center)
 			
-//			HStack {
-//				makeBubble(text: "📞 \(viewModel.phone)") // TODO: make enum
-//					.onTapGesture {
-//						showingPhoneOptions.toggle()
-//					}
-//				
-//				makeBubble(text: "🌐 @\(viewModel.network)")
-//			}
-//			.frame(maxWidth: .infinity, alignment: .center)
-//			.padding(.top, 10)
-//			
-//			HStack {
-//				makeBubble(text: "⏰ \(viewModel.schedule)")
-//				makeBubble(text: "🥗 \(viewModel.type)")
-//			}
-//			.frame(maxWidth: .infinity, alignment: .center)
 		}
 		.padding(.top, 10)
 		.confirmationDialog(alertTitle, isPresented: $showingPhoneOptions) {
@@ -62,14 +46,24 @@ struct ProfileGeneralView: View {
 			} label: {
 				Text("Copiar")
 			}
+			
 			Button() {
 				guard let phoneNum = URL(string: "tel://\(viewModel.phone)") else {return}
 				UIApplication.shared.open(phoneNum)
 			} label: {
 				Text("Llamar")
 			}
+			
+			Button() {
+				if let url = URL(string: "https://wa.me/+52\(viewModel.phone)?text=Hello"),
+				   UIApplication.shared.canOpenURL(url) {
+					UIApplication.shared.open(url, options: [:])
+				}
+			} label: {
+				Text("Abrir WhatsApp")
+			}
 		}
-    }
+	}
 	
 	@ViewBuilder
 	private func makeBubble(text: String) -> some View {
@@ -79,7 +73,7 @@ struct ProfileGeneralView: View {
 			.padding(.vertical, 10)
 			.background(
 				Capsule()
-					.strokeBorder(Color.random(),lineWidth: 3)
+					.strokeBorder(viewModel.getBubbleColor(iconText: text), lineWidth: 3)
 					.background(.clear)
 					.clipped()
 			)

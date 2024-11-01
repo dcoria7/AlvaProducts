@@ -9,12 +9,22 @@ import SwiftUI
 import FirebaseCore
 import FirebaseAuth
 import FirebaseAppCheck
+import JDStatusBarNotification
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		AppCheckManager.shared.setProviderFactory()
         FirebaseApp.configure()
+		
+		NotificationPresenter.shared.updateDefaultStyle { style in
+			style.backgroundStyle.backgroundColor = .customBlack()
+			style.textStyle.textColor = .customWite()
+			style.textStyle.font = UIFont.preferredFont(forTextStyle: .title3)
+			return style
+		}
+		NotificationPresenter.shared.displayActivityIndicator(true)
+		
         return true
     }
 }
@@ -22,7 +32,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct AlvaProductsApp: App {
     
-    @StateObject private var store = Store(storeHTTPClient: DefaultStoreHTTPClient())
+//    @StateObject private var store = Store(storeHTTPClient: DefaultStoreHTTPClient())
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
@@ -30,7 +40,7 @@ struct AlvaProductsApp: App {
         WindowGroup {
 //            MainView()
             InitContentView()
-                .environmentObject(store)
+//                .environmentObject(store)
         }
     }
 }

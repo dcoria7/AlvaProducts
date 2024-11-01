@@ -2,7 +2,6 @@
 //  CurrentUserProfileView.swift
 //  InstaSwift
 //
-//  Created by Bruno Rangel on 03/06/23.
 //
 
 import SwiftUI
@@ -11,37 +10,40 @@ struct CurrentUserProfileView: View {
 	let user: User
 	let venue: Venue
 	
-	@State private var logoutTapped: Bool = false
+	@State private var settingsTapped: Bool = false
 	
 	// TODO: Localize
 	let alertTitle: String = "Cerrar Sesión?"
 	
 	var body: some View {
 		NavigationStack {
-			ProfileView(user: user, venue: venue)
+			ProfileView(venue: venue)
 				.toolbar {
 					ToolbarItem(placement: .navigationBarTrailing) {
 						Button {
-							logoutTapped.toggle()
+							settingsTapped.toggle()
 						} label: {
-							Image(systemName: "person")
+							Image(systemName: "gear")
 								.imageScale(.large)
 						}
 					}
 				}
-				.alert(
-					alertTitle,
-					isPresented: $logoutTapped
-				) {
-					Button(role: .destructive) {
-						AuthService.shared.signOut()
-					} label: {
-						Text("Logout")
-					}
-					Button(role: .cancel) { } label: {
-						Text("Cancelar")
-					}
+				.navigationDestination(isPresented: $settingsTapped) {
+					AppSettingsView()
 				}
+//				.alert(
+//					alertTitle,
+//					isPresented: $logoutTapped
+//				) {
+//					Button(role: .destructive) {
+//						AuthService.shared.signOut()
+//					} label: {
+//						Text("Logout")
+//					}
+//					Button(role: .cancel) { } label: {
+//						Text("Cancelar")
+//					}
+//				}
 		}
 		.setDefaultBackgroundColor()
 	}

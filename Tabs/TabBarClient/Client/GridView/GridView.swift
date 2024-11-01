@@ -9,10 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct GridVenue: View {
-    var venue: Venue
-    
-    var body: some View {
-        VStack {
+	var venue: Venue
+	
+	var body: some View {
+		VStack(alignment: .center) {
 			KFImage(URL(string: venue.imageURLString))
 				.placeholder {
 					ProgressView()
@@ -23,8 +23,7 @@ struct GridVenue: View {
 				.frame(height: 140)
 				.clipped()
 				.overlay(venue.active ? .clear : Color.gray.opacity(0.8))
-                
-        }
-        .cornerRadius(10)
-    }
+		}
+		.cornerRadius(10)
+	}
 }

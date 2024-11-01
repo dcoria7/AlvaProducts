@@ -1,8 +1,6 @@
 //
 //  UserService.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 06/06/23.
 //
 
 import Firebase
@@ -34,8 +32,10 @@ extension UserService {
 	
 	static func updateVenueActive(userID: String, newValue: Bool) {
 		
-		venuesCollection .whereField("userId", isEqualTo: userID).getDocuments { (result, error) in
-			if error == nil{
+//		 try await venuesCollection.document(userID).updateData(["active": newValue])
+		 
+		 venuesCollection.whereField("userId", isEqualTo: userID).getDocuments { (result, error) in
+			if error == nil {
 				for document in result!.documents {
 					document.reference.updateData([
 						"active": newValue
@@ -43,9 +43,18 @@ extension UserService {
 					print("Document successfully updated")
 				}
 			} else {
-				print(error)
+				print(error.debugDescription)
 			}
 		}
 	}
+}
+
+extension UserService {
+	private static let usersCollection = Firestore.firestore().collection("users")
+	
+	static func updateUser(data: [String: Any]) {
+		
+	}
+	
 	
 }

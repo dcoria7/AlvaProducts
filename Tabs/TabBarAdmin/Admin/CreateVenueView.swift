@@ -10,6 +10,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 import _PhotosUI_SwiftUI
+import JDStatusBarNotification
 
 struct CreateVenueView: View {
     
@@ -85,7 +86,7 @@ struct CreateVenueView: View {
             .padding(.vertical)
 			
 			TextField(
-				"Descripcion del venue",
+				"Descripcion de la tienda",
 				text: Binding(
 					get: { viewModel.venueDescription },
 					set: { viewModel.venueDescription = $0
@@ -99,7 +100,7 @@ struct CreateVenueView: View {
 			.padding(.vertical)
 			
 			TextField(
-				"Telefono",
+				"Teléfono",
 				text: Binding(
 					get: { viewModel.venuePhone },
 					set: { viewModel.venuePhone = $0
@@ -196,6 +197,7 @@ struct CreateVenueView: View {
     @ViewBuilder
     private func makeSaveButton() -> some View {
         Button(action: {
+			NotificationPresenter.shared.present("Cargando...")
 			viewModel.insertVenue(title: viewModel.venueName,
 								  description: viewModel.venueDescription,
 								  userID: userSelected,
@@ -204,6 +206,8 @@ struct CreateVenueView: View {
 								  schedule: viewModel.venueSchedule,
 								  typeOfVenue: viewModel.venueType
 			)
+			
+			NotificationPresenter.shared.dismiss()
         }) {
             Text("Guardar")
         }

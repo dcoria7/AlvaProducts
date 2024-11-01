@@ -52,7 +52,7 @@ struct ProfileHeaderView: View {
 //						.font(.title3)
 //						.fontWeight(.bold)
 					
-					Text(viewModel.venue?.title ?? "")
+					Text(viewModel.title)
 						.foregroundStyle(Color.customBlack())
 						.font(.title3)
 						.fontWeight(.bold)
@@ -66,6 +66,7 @@ struct ProfileHeaderView: View {
 						.foregroundStyle(Color.customBlack())
 						.font(.title3)
 						.fontWeight(.bold)
+						.padding(.top, 15)
 					
 					Text("Correo")
 						.foregroundStyle(.gray)
@@ -100,8 +101,13 @@ struct ProfileHeaderView: View {
 
             Divider()
         }
-        .fullScreenCover(isPresented: $showEditProfile) {
-			EditProfileView(user: viewModel.getCurrentUser())
-        }
-    }
+		.fullScreenCover(isPresented: $showEditProfile,
+						 onDismiss: {
+							Task {
+								try await viewModel.fetchVenue(userId: viewModel.userId)
+							}}
+		) {
+			EditProfileView(user: viewModel.getCurrentUser(), venue: viewModel.venue)
+		}
+	}
 }

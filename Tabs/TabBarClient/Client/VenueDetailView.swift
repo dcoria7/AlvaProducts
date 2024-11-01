@@ -40,7 +40,7 @@ struct VenueDetailView: View {
 					ProfileGeneralView(viewModel: viewModel)
 				}
 				
-				// post image
+				// menu image
 				KFImage(URL(string: viewModel.menuImage))
 					.placeholder {
 						ProgressView()

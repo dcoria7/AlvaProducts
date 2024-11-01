@@ -7,6 +7,7 @@
 
 import PhotosUI
 import SwiftUI
+import JDStatusBarNotification
 
 struct UploadPostView: View {
     @State private var imagePickerPresented = false
@@ -33,13 +34,15 @@ struct UploadPostView: View {
                 Spacer()
 
                 Button {
-					print("is uploading....")
+					NotificationPresenter.shared.present("Cargando...")
+					
                     Task {
 						if try await viewModel.uploadPost(caption: viewModel.caption) {
 							print("finished")
 						} else {
 							print("something went wrong")
 						}
+						NotificationPresenter.shared.dismiss()
                         clearPostDataAndReturnToFeed()
                     }
                 } label: {

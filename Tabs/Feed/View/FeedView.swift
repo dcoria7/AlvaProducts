@@ -10,9 +10,7 @@ import FirebaseFirestore
 import Firebase
 
 struct FeedView: View {
-//    @Environment(\.colorScheme) var colorScheme
-    @State private var profileTapped: Bool = false
-    @State private var logoutTapped: Bool = false
+    @State private var settingsTapped: Bool = false
     @StateObject var viewModel = FeedViewModel()
 	
 	// TODO: Localize
@@ -26,11 +24,11 @@ struct FeedView: View {
                 LazyVStack(spacing: 24) {
                     ForEach(viewModel.posts) {post in
                         FeedCell(post: post) {
-                            if let user {
-                                Task {
-                                    try await viewModel.toggleLike(postId: post.id, uid: user.id)
-                                }
-                            }
+//                            if let user {
+//                                Task {
+//                                    try await viewModel.toggleLike(postId: post.id, uid: user.id)
+//                                }
+//                            }
                         }
                     }
                 }
@@ -44,40 +42,32 @@ struct FeedView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     
                     Button(action: {
-						profileTapped.toggle()
+						settingsTapped.toggle()
                     }) {
-                        Image(systemName: "person")
+                        Image(systemName: "gear")
                             .imageScale(.large)
                     }
                 }
             }
             .onAppear {
 				Tracker.trackFeedEvent()
+				
                 Task {
-                    try await viewModel.fetchPosts()
+					try await viewModel.fetchPosts()
                 }
             }
 			.refreshable {
+				
+				viewModel.posts = []
+				viewModel.lastDocument = nil
+				
 				Task {
 					try await viewModel.fetchPosts()
 				}
 			}
-			.navigationDestination(isPresented: $profileTapped) {
+			.navigationDestination(isPresented: $settingsTapped) {
 				AppSettingsView()
 			}
-			.alert(
-				alertTitle,
-				isPresented: $logoutTapped
-			) {
-				Button(role: .destructive) {
-					AuthService.shared.signOut()
-				} label: {
-					Text("Logout")
-				}
-				Button(role: .cancel) { } label: {
-					Text("Cancelar")
-				}
-            }
 			.setDefaultBackgroundColor()
         }
         

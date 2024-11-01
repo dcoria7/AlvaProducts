@@ -35,6 +35,7 @@ struct VenuesView: View {
                                 if venue.available && venue.active {
 									NavigationLink(value: venue) {
                                         GridVenue(venue: venue)
+											.frame(alignment: .center)
                                     }
                                 }
                             }

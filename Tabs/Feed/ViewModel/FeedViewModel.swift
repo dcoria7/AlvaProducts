@@ -10,11 +10,15 @@ import Foundation
 import FirebaseFirestore
 
 class FeedViewModel: ObservableObject {
-    @Published var posts = [Post]()
-
+	@Published var posts: [Post] = []
+	var lastDocument: DocumentSnapshot? = nil
+	
     @MainActor
-    func fetchPosts() async throws {
-        posts = try await PostService.fetchFeedPosts()
+	func fetchPosts() async throws {
+//		let newPosts = try await PostService.fetchFeedPosts(lastPost: lastPost)
+		let (newPosts, lastDocument) = try await PostService.fetchFeedPosts(lastDocument: lastDocument)
+		self.posts.append(contentsOf: newPosts)
+		self.lastDocument = lastDocument
     }
 
     @MainActor

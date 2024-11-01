@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AppSettingsView: View {
 	@StateObject var viewModel = AppSettingsViewModel()
-	@State var showLogoutDialog: Bool = false
+	@State private var showLogoutDialog: Bool = false
+	@State private var loginTapped: Bool = false
 	
 	// TODO: Localize
 	let alertTitle: String = "Cerrar Sesión?"
@@ -21,17 +22,21 @@ struct AppSettingsView: View {
 				Button(action: {
 					
 				}) {
-					customView(title: "Algo mas...")
+					customView(title: "Contactanos")
 				}
 				
 				Button(action: {
 					if viewModel.getUser() != nil {
 						showLogoutDialog.toggle()
 					} else {
-						showLogoutDialog.toggle()
+						loginTapped.toggle()
 					}
 				}) {
-					customView(title: "Cerrar Sesión")
+					if viewModel.getUser() != nil {
+						customView(title: "Cerrar Sesión")
+					} else {
+						customView(title: "Iniciar Sesión")
+					}
 				}
 				
 				Text("Version 1.0")
@@ -39,6 +44,9 @@ struct AppSettingsView: View {
 					.padding(.top, 10)
 			}
 			.padding()
+		}
+		.navigationDestination(isPresented: $loginTapped) {
+			LoginView(user: viewModel.getUser())
 		}
 		.alert(
 			alertTitle,

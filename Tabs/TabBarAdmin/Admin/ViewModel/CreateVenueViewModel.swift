@@ -87,7 +87,8 @@ class CreateVenueViewModel: ObservableObject {
         guard let menuImageUrl = try await ImageUploader.uploadImage(type: .post, image: menuImage) else { return }
         
 		let venue = Venue(id: postRef.documentID,
-						  title: title, imageURLString: userImageUrl,
+						  title: title,
+						  imageURLString: userImageUrl,
 						  available: false,
 						  date: Date(),
 						  active: false,

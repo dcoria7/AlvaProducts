@@ -62,6 +62,7 @@ class PostClientGridViewModel: ObservableObject {
 	var isDataFetched = false
 	
 	@Published var menuImage = ""
+	@Published var title = ""
 	@Published var description = ""
 	@Published var posts = [Post]()
 	@Published var isActive: Bool = false
@@ -103,6 +104,13 @@ class PostClientGridViewModel: ObservableObject {
 		self.user ?? service.currentUser!
 	}
 	
+	private func getVenueTitle() -> String {
+		guard let title = venue?.title else {
+			return ""
+		}
+		return title
+	}
+	
 	private func getVenueDescription() -> String {
 		guard let desc = venue?.venueDescription else {
 			return ""
@@ -115,6 +123,19 @@ class PostClientGridViewModel: ObservableObject {
 			return ""
 		}
 		return image
+	}
+	
+	func getBubbleColor(iconText: String) -> Color {
+		if iconText.contains("📞") {
+			return .red
+		} else if iconText.contains("🌐") {
+			return .blue
+		} else if iconText.contains("⏰") {
+			return .purple
+		} else {
+			return .yellow
+		}
+		
 	}
 	
 	@MainActor
@@ -136,6 +157,7 @@ class PostClientGridViewModel: ObservableObject {
 			tags = []
 			self.venue = try await UserService.fetchVenue(withId: userId)
 			self.menuImage = getMenuImage()
+			self.title = getVenueTitle()
 			self.description = getVenueDescription()
 			guard let isActive = self.venue?.active else { return }
 			self.isActive = isActive

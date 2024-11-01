@@ -20,7 +20,7 @@ struct InitContentView: View {
                 MainTabView(user: nil, venue: nil)
                     .environmentObject(viewModel)
             } else if let currentUser = viewModel.currentUser {
-                let currentVenue = viewModel.currentVenue 
+                let currentVenue = viewModel.currentVenue
                 MainTabView(user: currentUser, venue: currentVenue)
                     .environmentObject(viewModel)
             }
