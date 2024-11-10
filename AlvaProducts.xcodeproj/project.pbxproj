@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851250FA2CD9D41200F75FB1 /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851250F92CD9D40300F75FB1 /* CoordinatorView.swift */; };
 		85412FA62CBDD90D004CAB4D /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA52CBDD905004CAB4D /* Tracker.swift */; };
 		85412FA82CC2DA58004CAB4D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */; };
 		85412FAB2CC35293004CAB4D /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 85412FAA2CC35293004CAB4D /* WrappingHStack */; };
@@ -92,6 +93,8 @@
 		85C171D82CB458C9006C37F3 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C171D72CB458C2006C37F3 /* View+Extensions.swift */; };
 		85C171DD2CB5C48D006C37F3 /* ProfileGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C171DC2CB5C48D006C37F3 /* ProfileGeneralView.swift */; };
 		85C171E02CB6F997006C37F3 /* AppCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C171DF2CB6F994006C37F3 /* AppCheckManager.swift */; };
+		85CCC2022CD97B5B00BDF554 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCC2002CD97B5B00BDF554 /* Coordinator.swift */; };
+		85CCC2032CD97B5B00BDF554 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCC1FF2CD97B5B00BDF554 /* AppCoordinator.swift */; };
 		85E5B5752BBE339900A908C3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 85E5B5742BBE339900A908C3 /* FirebaseAnalytics */; };
 		85E5B5772BBE339900A908C3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 85E5B5762BBE339900A908C3 /* FirebaseAnalyticsOnDeviceConversion */; };
 		85E5B5792BBE339900A908C3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 85E5B5782BBE339900A908C3 /* FirebaseAnalyticsSwift */; };
@@ -138,6 +141,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		851250F92CD9D40300F75FB1 /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
 		85412FA52CBDD905004CAB4D /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		85412FA72CC2DA55004CAB4D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		85412FAD2CC6C109004CAB4D /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 		85C171D72CB458C2006C37F3 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		85C171DC2CB5C48D006C37F3 /* ProfileGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGeneralView.swift; sourceTree = "<group>"; };
 		85C171DF2CB6F994006C37F3 /* AppCheckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCheckManager.swift; sourceTree = "<group>"; };
+		85CCC1FF2CD97B5B00BDF554 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		85CCC2002CD97B5B00BDF554 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		85E5B5622BBE328D00A908C3 /* AlvaProducts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlvaProducts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -692,6 +698,7 @@
 		85A78EEA2CA4F34700C60504 /* AlvaProducts */ = {
 			isa = PBXGroup;
 			children = (
+				85CCC2012CD97B5B00BDF554 /* Coordinator */,
 				855709522CC83DAB006B6D6F /* AlvaProducts-Info.plist */,
 				85412FB12CC73BA1004CAB4D /* Components */,
 				85412FA42CBDD8FE004CAB4D /* Analytics */,
@@ -730,6 +737,16 @@
 				85C171DF2CB6F994006C37F3 /* AppCheckManager.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		85CCC2012CD97B5B00BDF554 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				851250F92CD9D40300F75FB1 /* CoordinatorView.swift */,
+				85CCC1FF2CD97B5B00BDF554 /* AppCoordinator.swift */,
+				85CCC2002CD97B5B00BDF554 /* Coordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		85E5B5592BBE328D00A908C3 = {
@@ -904,6 +921,7 @@
 				85A78F272CA4F34700C60504 /* HTTPRequestBuilder.swift in Sources */,
 				85A78F112CA4F34700C60504 /* CatalogListScreen.swift in Sources */,
 				85A78EFC2CA4F34700C60504 /* LoginViewModel.swift in Sources */,
+				851250FA2CD9D41200F75FB1 /* CoordinatorView.swift in Sources */,
 				85A78EEE2CA4F34700C60504 /* CreateVenueView.swift in Sources */,
 				85A78EF52CA4F34700C60504 /* AlvaProductsApp.swift in Sources */,
 				85A78EF12CA4F34700C60504 /* VenueDetailView.swift in Sources */,
@@ -955,6 +973,8 @@
 				85C171DD2CB5C48D006C37F3 /* ProfileGeneralView.swift in Sources */,
 				85A78F122CA4F34700C60504 /* CurrentUserProfileView.swift in Sources */,
 				85A78F1E2CA4F34700C60504 /* NetworkConstantsProtocol.swift in Sources */,
+				85CCC2022CD97B5B00BDF554 /* Coordinator.swift in Sources */,
+				85CCC2032CD97B5B00BDF554 /* AppCoordinator.swift in Sources */,
 				85A78F352CA4F34700C60504 /* String+Extension.swift in Sources */,
 				85A78F062CA4F34700C60504 /* SinglePostView.swift in Sources */,
 				85A78F012CA4F34700C60504 /* User.swift in Sources */,

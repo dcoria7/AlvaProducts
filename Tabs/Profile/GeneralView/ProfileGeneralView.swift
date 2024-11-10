@@ -13,6 +13,7 @@ struct ProfileGeneralView: View {
 	
 	@StateObject var viewModel: PostClientGridViewModel
 	@State private var showingPhoneOptions = false
+	@State private var showingNetworkOption = false
 	
 	// TODO: Localize
 	let alertTitle: String = ""
@@ -60,7 +61,15 @@ struct ProfileGeneralView: View {
 					UIApplication.shared.open(url, options: [:])
 				}
 			} label: {
-				Text("Abrir WhatsApp")
+				Text("Abrir en WhatsApp") //TODO: Localize
+			}
+		}
+		.confirmationDialog(alertTitle, isPresented: $showingNetworkOption) {
+			Button() {
+				guard let instagram = URL(string: "https://www.instagram.com/\(viewModel.network)") else { return }
+				UIApplication.shared.open(instagram)
+			} label: {
+				Text("Abrir Instagram")
 			}
 		}
 	}
@@ -80,6 +89,9 @@ struct ProfileGeneralView: View {
 			.onTapGesture {
 				if text.contains("📞") {
 					showingPhoneOptions.toggle()
+				}
+				if text.contains("🌐") {
+					showingNetworkOption.toggle()
 				}
 			}
 	}

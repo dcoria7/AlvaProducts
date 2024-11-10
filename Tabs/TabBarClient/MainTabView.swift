@@ -10,13 +10,15 @@ import SwiftUI
 struct MainTabView: View {
     let user: User?
     let venue: Venue?
+	var coordinator: AppCoordinator
+	
     @EnvironmentObject var contentViewModel: ContentViewModel
     @State private var selectedIndex = 0
 
     var body: some View {
         TabView(selection: $selectedIndex) {
 			Group {
-				FeedView(user: user)
+				FeedView(user: user, coordinator: coordinator)
 					.onAppear {
 						selectedIndex = 0
 					}
@@ -36,7 +38,7 @@ struct MainTabView: View {
 				//                }
 				//                .tag(1)
 				
-				VenuesView()
+				VenuesView(coordinator: coordinator)
 					.onAppear {
 						selectedIndex = 1
 					}

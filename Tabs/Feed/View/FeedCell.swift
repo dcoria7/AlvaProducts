@@ -13,6 +13,7 @@ struct FeedCell: View {
 	
 	let post: Post
 	//    let user: User?
+	//	var coordinator: AppCoordinator
 	let onLikeTapped: () -> Void
 	@State private var cellTapped: Bool = false
 	
@@ -54,6 +55,10 @@ struct FeedCell: View {
 					Spacer()
 				}
 				.padding(.leading, 10)
+//				.onTapGesture {
+//					onLikeTapped()
+//				}
+				
 			}
 			
 			Text(post.timestamp.dateValue().elapsedTime())
@@ -65,6 +70,7 @@ struct FeedCell: View {
 		}
 		.navigationDestination(for: Post.self) { post in
 			VenueDetailView(userId: post.venue?.userId ?? "", venue: post.venue!) // TODO: use coordinator instead
+//			coordinator.goToVenueDetail(userID: post.venue?.userId ?? "", venue: post.venue!)
 		}
 	}
 	
@@ -90,10 +96,10 @@ struct FeedCell: View {
 	}
 }
 
-struct FeedCell_Previews: PreviewProvider {
-	static var previews: some View {
-		FeedCell(post: Post.mockPosts[1]) {
-			print("On Like Tapped")
-		}
-	}
-}
+//struct FeedCell_Previews: PreviewProvider {
+//	static var previews: some View {
+//		FeedCell(post: Post.mockPosts[1], coordinator: AppCoordinator()) {
+//			print("On Like Tapped")
+//		}
+//	}
+//}

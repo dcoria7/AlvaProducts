@@ -12,12 +12,13 @@ import SwiftUI
 struct MainView: View {
     let user: User?
     let venue: Venue?
+	var coordinator: AppCoordinator
     @State private var selectedIndex = 0
     
     var body: some View {
         TabView {
             
-            FeedView(user: user)
+			FeedView(user: user, coordinator: coordinator)
                 .onAppear {
                     selectedIndex = 0
                 }
@@ -26,7 +27,7 @@ struct MainView: View {
                 }
                 .tag(0)
             
-            VenuesView()
+			VenuesView(coordinator: coordinator)
                 .onAppear {
                     selectedIndex = 1
                 }
@@ -54,8 +55,8 @@ struct MainView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView(user: User.mockUsers[0], venue: User.mockVenue[0])
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//		MainView(user: User.mockUsers[0], venue: User.mockVenue[0], coordinator: AppCoordinator())
+//    }
+//}

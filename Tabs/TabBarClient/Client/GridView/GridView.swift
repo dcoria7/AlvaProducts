@@ -10,6 +10,7 @@ import Kingfisher
 
 struct GridVenue: View {
 	var venue: Venue
+	let onLikeTapped: () -> Void
 	
 	var body: some View {
 		VStack(alignment: .center) {
@@ -25,5 +26,8 @@ struct GridVenue: View {
 				.overlay(venue.active ? .clear : Color.gray.opacity(0.8))
 		}
 		.cornerRadius(10)
+//		.onTapGesture {
+//			onLikeTapped()
+//		}
 	}
 }

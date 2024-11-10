@@ -1,56 +1,27 @@
 //
 //  InitContentView.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 02/06/23.
 //
 
 import SwiftUI
 
 struct InitContentView: View {
-    @StateObject var viewModel = ContentViewModel()
-
-    init() {
-        UINavigationBar.appearance().tintColor = UIColor(Color.primary)
-    }
-
-    var body: some View {
-        Group {
-            if viewModel.userSession == nil {
-                MainTabView(user: nil, venue: nil)
-                    .environmentObject(viewModel)
-            } else if let currentUser = viewModel.currentUser {
-                let currentVenue = viewModel.currentVenue
-                MainTabView(user: currentUser, venue: currentVenue)
-                    .environmentObject(viewModel)
-            }
-            
-//            if viewModel.userSession == nil {
-               
-//                if let isAdmin = viewModel.isAdmin, isAdmin {
-//                    MainTabView(user: nil)
-//                        .environmentObject(viewModel)
-//                } else if let isAdmin = viewModel.isAdmin, !isAdmin {
-//                    MainView(user: nil)
-//                } else {
-//                    InitView()
-//                        .environmentObject(viewModel)
-//                }
-
-//                LoginView()
-//                    .environmentObject(registrationViewModel)
-//            } else if let currentUser = viewModel.currentUser {
-//                
-//                MainTabView(user: currentUser)
-//                    .environmentObject(viewModel)
-//            }
-            
-        }
-    }
-}
-
-struct InitContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        InitContentView()
-    }
+	@StateObject var viewModel = ContentViewModel()
+	// ObservedObject to listen to changes in the coordinator
+	@ObservedObject var coordinator: AppCoordinator
+	
+	var body: some View {
+		Group {
+			// Start the coordinator to determine which view to display
+			if viewModel.userSession == nil {
+				coordinator.start(contentViewModel: viewModel, user: nil, venue: nil)
+					.accessibilityElement(children: .contain) // Ensures the contained views are accessible
+				
+			} else if let currentUser = viewModel.currentUser,
+					  let currentVenue = viewModel.currentVenue {
+				coordinator.start(contentViewModel: viewModel, user: currentUser, venue: currentVenue)
+					.accessibilityElement(children: .contain) // Ensures the contained views are accessible
+			}
+		}
+	}
 }

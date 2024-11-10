@@ -31,16 +31,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct AlvaProductsApp: App {
-    
-//    @StateObject private var store = Store(storeHTTPClient: DefaultStoreHTTPClient())
-    // register app delegate for Firebase setup
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
-    var body: some Scene {
-        WindowGroup {
-//            MainView()
-            InitContentView()
-//                .environmentObject(store)
-        }
-    }
+	
+//	    @StateObject private var store = Store(storeHTTPClient: DefaultStoreHTTPClient())
+	// register app delegate for Firebase setup
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+	
+	// StateObject to hold the AppCoordinator instance
+	@StateObject var coordinator: AppCoordinator
+	
+	init() {
+		
+		// Initialize the AppCoordinator with required dependencies
+		_coordinator = StateObject(
+			wrappedValue: AppCoordinator())
+	}
+	
+	var body: some Scene {
+		WindowGroup {
+			InitContentView(coordinator: coordinator)
+			//                .environmentObject(store)
+		}
+	}
 }
