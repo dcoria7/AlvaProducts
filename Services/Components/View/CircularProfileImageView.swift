@@ -1,8 +1,8 @@
 //
 //  CircularProfileImageView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 06/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import Kingfisher

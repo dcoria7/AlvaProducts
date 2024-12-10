@@ -1,8 +1,8 @@
 //
 //  UploadPostViewModel.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 04/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import Firebase
@@ -10,6 +10,7 @@ import PhotosUI
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
+import Combine
 
 class UploadPostViewModel: ObservableObject {
     @Published var selectedImage: PhotosPickerItem? {
@@ -20,10 +21,25 @@ class UploadPostViewModel: ObservableObject {
         }
     }
     
-    @Published var postImage: Image?
+	@Published var isPostButtonDisabled: Bool = true
+    @Published var postImage: Image? = nil
     @Published var caption = ""
     
     private var uiImage: UIImage?
+	
+	init() {
+		
+		// Binding
+		Publishers
+			.CombineLatest(
+				$caption,
+				$postImage
+			)
+			.map { caption, postImage in
+				caption.isEmptyOrWhitespace() && postImage != nil
+			}
+			.assign(to: &$isPostButtonDisabled)
+	}
     
     @MainActor
     func loadImage(fromItem item: PhotosPickerItem?) async {
@@ -35,22 +51,22 @@ class UploadPostViewModel: ObservableObject {
         self.postImage = Image(uiImage: uiImage)
     }
     
-    func uploadPost(caption: String) async throws -> Bool {
-        guard let uid = Auth.auth().currentUser?.uid else { return false }
-        guard let currentVenue = AuthService.shared.currentVenue else { return false }
-        guard let uiImage = self.uiImage else { return false }
+    func uploadPost(caption: String) async throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let currentVenue = AuthService.shared.currentVenue else { return }
+        guard let uiImage = self.uiImage else { return }
         
         let postRef = Firestore.firestore().collection("posts").document()
-        guard let imageUrl = try await ImageUploader.uploadImage(type: .post, image: uiImage) else { return false }
+        guard let imageUrl = try await ImageUploader.uploadImage(type: .post, image: uiImage) else { return }
         
         let post = Post(id: postRef.documentID, ownerUid: uid, caption: caption, likes: 0, imageUrl: imageUrl, timestamp: Timestamp(), venue: currentVenue)
         
-        guard let encodedPost = try? Firestore.Encoder().encode(post) else { return false }
-		do {
+        guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
+//		do {
 			try await postRef.setData(encodedPost)
-			return true
-		} catch {
-			return false
-		}
+//			return true
+//		} catch {
+//			return false
+//		}
     }
 }

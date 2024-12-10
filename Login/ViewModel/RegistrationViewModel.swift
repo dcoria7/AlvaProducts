@@ -1,8 +1,8 @@
 //
 //  RegistrationViewModel.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 04/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import Foundation

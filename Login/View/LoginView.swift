@@ -1,17 +1,32 @@
 //
 //  LoginView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
+import JDStatusBarNotification
+
+enum ActiveAlert {
+	case credentials, forgotPassword
+}
 
 struct LoginView: View {
     @Environment(\.colorScheme) var colorScheme
     let user: User?
     @StateObject var viewModel = LoginViewModel()
     @StateObject var registrationViewModel = RegistrationViewModel()
+	
+	
+	@State var showDialog: Bool = false
+	@State private var activeAlert: ActiveAlert = .credentials
+	
+	// TODO: Localize
+	let alertForgotPasswordTitle: String = "¿Olvidaste tu contraseña?"
+	
+	let credentialFailTitle: String = "Correo o contraseña invalidos"
+	let credentialFailSubtitle: String = "Revisa tu correo/contraseña"
 
     var body: some View {
         NavigationStack {
@@ -22,19 +37,20 @@ struct LoginView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 220)
                 VStack {
-                    TextField("Enter your e-mail", text: $viewModel.email)
+                    TextField("Ingresa tu email", text: $viewModel.email)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
                         .modifier(ISTextViewModifier())
 
-                    SecureField("Enter your password", text: $viewModel.password)
+                    SecureField("Ingresa tu contraseña", text: $viewModel.password)
                         .modifier(ISTextViewModifier())
                 }
 
                 Button {
-                    print("Show forgot password")
+					activeAlert = .forgotPassword
+					showDialog = true
                 } label: {
-                    Text("Forgot password?")
+                    Text("Olvidé mi contraseña")
                         .font(.footnote)
                         .fontWeight(.semibold)
                         .padding(.top)
@@ -43,68 +59,67 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
 
                 Button {
-                    Task {
-                        do {
-                            try await viewModel.signIn()
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                    }
+					
+					if viewModel.email.isEmpty || viewModel.password.isEmpty || !viewModel.email.isValidEmail() {
+						activeAlert = .credentials
+						showDialog = true
+					} else {
+						Task {
+							NotificationPresenter.shared.present("Cargando...")
+							do {
+								try await viewModel.signIn()
+								NotificationPresenter.shared.dismiss()
+							} catch {
+								activeAlert = .credentials
+								showDialog = true
+							}
+							NotificationPresenter.shared.dismiss()
+						}
+					}
                 } label: {
                     Text("Login")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-						.foregroundStyle(Color.customBlack())
+						.foregroundStyle(Color.customWhite())
                         .frame(width: 360, height: 44)
-                        .background(Color(.systemBlue))
+						.background(Color.green())
                         .cornerRadius(8)
                 }
                 .padding(.vertical)
 
-                Divider()
-                    .overlay {
-                        Text("OR")
-                            .font(.footnote)
-							.foregroundColor(.green)
-                            .padding(.horizontal)
-                            .background(Color.primary.colorInvert())
-                    }
-                    .padding(.horizontal)
-
-                HStack {
-                    Image("facebook-logo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 20, height: 20)
-                    Text("Continue with Facebook")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color(.systemBlue))
-                }
-                .padding(.top, 8)
-
                 Spacer()
 
-                Divider()
+//                Divider()
 
-                if let user, user.email == "dcoria7@gmail.com"{
-                    NavigationLink {
-                        AddEmailView()
-                            .navigationBarBackButtonHidden()
-                            .environmentObject(registrationViewModel)
-                    } label: {
-                        HStack(spacing: 3) {
-                            Text("Don't have an account?")
-                            Text("Sign Up")
-                                .fontWeight(.semibold)
-                        }
-                        .font(.footnote)
-                    }
-                    .padding(.vertical, 16)
-                }
+//                if let user, user.email == "dcoria7@gmail.com" {
+//                    NavigationLink {
+//                        AddEmailView()
+//                            .navigationBarBackButtonHidden()
+//                            .environmentObject(registrationViewModel)
+//                    } label: {
+//                        HStack(spacing: 3) {
+//                            Text("Don't have an account?")
+//                            Text("Sign Up")
+//                                .fontWeight(.semibold)
+//                        }
+//                        .font(.footnote)
+//                    }
+//                    .padding(.vertical, 16)
+//                }
             }
         }
         .toolbar(.hidden, for: .tabBar)
+		.alert(
+			isPresented: $showDialog
+		) {
+			switch activeAlert {
+				case .credentials:
+					Alert(title: Text(credentialFailTitle), message: Text(credentialFailSubtitle), dismissButton: .default(Text("Aceptar")))
+				case .forgotPassword:
+					Alert(title: Text(alertForgotPasswordTitle), message: Text("Contacta al administrador para recuperar tu contraseña"), dismissButton: .default(Text("Aceptar")))
+			}
+			
+		}
     }
 }
 

@@ -11,9 +11,6 @@ struct FeedView: View {
     @State private var settingsTapped: Bool = false
 	@State private var venueTapped: Bool = false
     @StateObject var viewModel = FeedViewModel()
-	
-	// TODO: Localize
-	let alertTitle: String = "Cerrar Sesión?"
     
     let user: User?
 	var coordinator: AppCoordinator
@@ -32,8 +29,9 @@ struct FeedView: View {
             .navigationBarTitleDisplayMode(.inline)
 			.navigationBarColor(tintColor: UIColor.customBlack())
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("Alva")
+				ToolbarItem(placement: .principal) {
+					Image(systemName: "house")
+						
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     

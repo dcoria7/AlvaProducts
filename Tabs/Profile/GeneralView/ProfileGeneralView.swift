@@ -1,6 +1,6 @@
 //
 //  ProfileGeneralView.swift
-//  AlvaProducts
+//  ClickLocal
 //
 //  Created by DC on 08/10/24.
 //
@@ -12,8 +12,8 @@ import WrappingHStack
 struct ProfileGeneralView: View {
 	
 	@StateObject var viewModel: PostClientGridViewModel
-	@State private var showingPhoneOptions = false
-	@State private var showingNetworkOption = false
+	@State private var showPhoneOptions = false
+	@State private var showNetworkOption = false
 	
 	// TODO: Localize
 	let alertTitle: String = ""
@@ -41,7 +41,7 @@ struct ProfileGeneralView: View {
 			
 		}
 		.padding(.top, 10)
-		.confirmationDialog(alertTitle, isPresented: $showingPhoneOptions) {
+		.confirmationDialog(alertTitle, isPresented: $showPhoneOptions) {
 			Button() {
 				AuthService.shared.signOut()
 			} label: {
@@ -64,7 +64,7 @@ struct ProfileGeneralView: View {
 				Text("Abrir en WhatsApp") //TODO: Localize
 			}
 		}
-		.confirmationDialog(alertTitle, isPresented: $showingNetworkOption) {
+		.confirmationDialog(alertTitle, isPresented: $showNetworkOption) {
 			Button() {
 				guard let instagram = URL(string: "https://www.instagram.com/\(viewModel.network)") else { return }
 				UIApplication.shared.open(instagram)
@@ -88,10 +88,10 @@ struct ProfileGeneralView: View {
 			)
 			.onTapGesture {
 				if text.contains("📞") {
-					showingPhoneOptions.toggle()
+					showPhoneOptions.toggle()
 				}
 				if text.contains("🌐") {
-					showingNetworkOption.toggle()
+					showNetworkOption.toggle()
 				}
 			}
 	}

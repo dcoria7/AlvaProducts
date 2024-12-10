@@ -1,6 +1,6 @@
 //
 //  View+Extensions.swift
-//  AlvaProducts
+//  ClickLocal
 //
 //  Created by DC on 07/10/24.
 //
@@ -14,6 +14,53 @@ extension View {
 	}
 	
 	@ViewBuilder
+	@inlinable func setDefaultBackgroundColor() -> some View {
+		background(Color.make(rgb: "FBFBF9", alpha: 1.0))
+	}
+	
+	@ViewBuilder
+	@inlinable func setBlackBackgroundColor() -> some View {
+		background(Color.make(rgb: "2d3030", alpha: 1.0))
+	}
+}
+
+extension View {
+	
+	@inlinable public func onChange<V>(unwrapping value: V?, perform action: @escaping (V) -> Void) -> some View where V : Equatable {
+		self.onChange(of: value) { _, value in
+			if let unwrapped = value {
+				action(unwrapped)
+			}
+		}
+	}
+	
+	@inlinable public func onChange(isTrue value: Bool, perform action: @escaping () -> Void) -> some View {
+		self.onChange(of: value) { _, value in
+			if value {
+				action()
+			}
+		}
+	}
+	
+	@inlinable public func onChange(isFalse value: Bool, perform action: @escaping () -> Void) -> some View {
+		self.onChange(of: value) { _, value in
+			if !value {
+				action()
+			}
+		}
+	}
+	
+	@inlinable public func onFinish<V>(of value: Bool,
+									   unwrapping unwrappedValue: V?,
+									   perform action: @escaping (V) -> Void) -> some View where V : Equatable {
+		self.onChange(of: value) { _, value in
+			if value, let unwrapped = unwrappedValue {
+				action(unwrapped)
+			}
+		}
+	}
+	
+	@ViewBuilder
 	@inlinable func isHidden(_ hidden: Bool, remove: Bool = true) -> some View {
 		if hidden {
 			if !remove {
@@ -24,23 +71,6 @@ extension View {
 		}
 	}
 	
-	@ViewBuilder
-	@inlinable func setDefaultBackgroundColor() -> some View {
-		background(Color.make(rgb: "FBFBF9", alpha: 1.0))
-	}
-	
-	@ViewBuilder
-	@inlinable func setBlackBackgroundColor() -> some View {
-		background(Color.make(rgb: "2d3030", alpha: 1.0))
-	}
-	
-	@inlinable public func onChange(isTrue value: Bool, perform action: @escaping () -> Void) -> some View {
-		self.onChange(of: value, perform: { value in
-			if value {
-				action()
-			}
-		})
-	}
 }
 
 public extension View {

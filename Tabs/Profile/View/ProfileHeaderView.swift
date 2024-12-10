@@ -42,15 +42,6 @@ struct ProfileHeaderView: View {
 				}
 				
 				VStack(alignment: .leading, spacing: 4) {
-//					Text("Nombre de usuario:") // TODO: Make an enum
-//						.foregroundStyle(.gray)
-//						.font(.footnote)
-//						.fontWeight(.light)
-//					
-//					Text(viewModel.user.username)
-//						.foregroundStyle(.white)
-//						.font(.title3)
-//						.fontWeight(.bold)
 					
 					Text(viewModel.title)
 						.foregroundStyle(Color.customBlack())

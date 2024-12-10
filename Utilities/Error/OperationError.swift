@@ -7,6 +7,10 @@
 
 import Foundation
 
+// usar solo enum to properly handle error message
+//
+
+
 struct OperationError: Codable, Error {
 	
 	enum Code: String {

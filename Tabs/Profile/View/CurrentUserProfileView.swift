@@ -1,7 +1,8 @@
 //
 //  CurrentUserProfileView.swift
-//  InstaSwift
+//  ClickLocal
 //
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
@@ -13,7 +14,7 @@ struct CurrentUserProfileView: View {
 	@State private var settingsTapped: Bool = false
 	
 	// TODO: Localize
-	let alertTitle: String = "Cerrar Sesión?"
+	let alertTitle: String = "Cerrar sesión?"
 	
 	var body: some View {
 		NavigationStack {
@@ -31,19 +32,6 @@ struct CurrentUserProfileView: View {
 				.navigationDestination(isPresented: $settingsTapped) {
 					AppSettingsView()
 				}
-//				.alert(
-//					alertTitle,
-//					isPresented: $logoutTapped
-//				) {
-//					Button(role: .destructive) {
-//						AuthService.shared.signOut()
-//					} label: {
-//						Text("Logout")
-//					}
-//					Button(role: .cancel) { } label: {
-//						Text("Cancelar")
-//					}
-//				}
 		}
 		.setDefaultBackgroundColor()
 	}

@@ -1,6 +1,6 @@
 //
 //  AppSettingsView.swift
-//  AlvaProducts
+//  ClickLocal
 //
 //  Created by DC on 21/10/24.
 //
@@ -11,18 +11,19 @@ struct AppSettingsView: View {
 	@StateObject var viewModel = AppSettingsViewModel()
 	@State private var showLogoutDialog: Bool = false
 	@State private var loginTapped: Bool = false
+	@State private var showPhoneOptions = false
 	
 	// TODO: Localize
-	let alertTitle: String = "Cerrar Sesión?"
+	let alertTitle: String = "Cerrar sesión?"
 	
 	var body: some View {
 		ScrollView {
 			
 			Group {
 				Button(action: {
-					
+					showPhoneOptions.toggle()
 				}) {
-					customView(title: "Contactanos")
+					customView(title: "¡Contáctanos!")
 				}
 				
 				Button(action: {
@@ -33,9 +34,9 @@ struct AppSettingsView: View {
 					}
 				}) {
 					if viewModel.getUser() != nil {
-						customView(title: "Cerrar Sesión")
+						customView(title: "Cerrar sesión")
 					} else {
-						customView(title: "Iniciar Sesión")
+						customView(title: "Iniciar sesión")
 					}
 				}
 				
@@ -45,6 +46,7 @@ struct AppSettingsView: View {
 			}
 			.padding()
 		}
+		.setBlackBackgroundColor()
 		.navigationDestination(isPresented: $loginTapped) {
 			LoginView(user: viewModel.getUser())
 		}
@@ -61,7 +63,29 @@ struct AppSettingsView: View {
 				Text("Cancelar")
 			}
 		}
-		.setBlackBackgroundColor()
+		.confirmationDialog(alertTitle, isPresented: $showPhoneOptions) {
+			Button() {
+				AuthService.shared.signOut()
+			} label: {
+				Text("Copiar")
+			}
+			
+			Button() {
+				guard let phoneNum = URL(string: "tel://\(viewModel.phone)") else {return}
+				UIApplication.shared.open(phoneNum)
+			} label: {
+				Text("Llamar")
+			}
+			
+			Button() {
+				if let url = URL(string: "https://wa.me/+52\(viewModel.phone)?text=Hello"),
+				   UIApplication.shared.canOpenURL(url) {
+					UIApplication.shared.open(url, options: [:])
+				}
+			} label: {
+				Text("Abrir en WhatsApp") //TODO: Localize
+			}
+		}
 	}
 	
 	@ViewBuilder

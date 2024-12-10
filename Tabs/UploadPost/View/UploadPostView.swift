@@ -1,8 +1,8 @@
 //
 //  UploadPostView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 04/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import PhotosUI
@@ -23,12 +23,12 @@ struct UploadPostView: View {
                 Button {
                     clearPostDataAndReturnToFeed()
                 } label: {
-                    Text("Cancel") // TODO: Localize
+                    Text("Cancelar") // TODO: Localize
                 }
 
                 Spacer()
 
-                Text("New Post") // TODO: Localize
+                Text("Nuevo Post") // TODO: Localize
                     .fontWeight(.semibold)
 
                 Spacer()
@@ -37,9 +37,10 @@ struct UploadPostView: View {
 					NotificationPresenter.shared.present("Cargando...")
 					
                     Task {
-						if try await viewModel.uploadPost(caption: viewModel.caption) {
+						do {
+							try await viewModel.uploadPost(caption: viewModel.caption)
 							print("finished")
-						} else {
+						} catch {
 							print("something went wrong")
 						}
 						NotificationPresenter.shared.dismiss()
@@ -49,6 +50,7 @@ struct UploadPostView: View {
                     Text("Enviar") // TODO: Localize
                         .fontWeight(.semibold)
                 }
+				.disabled(viewModel.isPostButtonDisabled)
             }
             .padding(.horizontal)
 
@@ -71,6 +73,11 @@ struct UploadPostView: View {
         .onAppear {
             imagePickerPresented.toggle()
         }
+		.onChange(isFalse: imagePickerPresented) {
+			if viewModel.selectedImage == nil {
+				clearPostDataAndReturnToFeed()
+			}
+		}
         .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedImage)
     }
     

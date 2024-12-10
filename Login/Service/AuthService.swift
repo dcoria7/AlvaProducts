@@ -24,11 +24,11 @@ class AuthService {
     @MainActor
     func login(withEmail email: String, password: String) async throws {
         do {
-            let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            userSession = result.user
-            try await loadUserData()
+			userSession = try await Auth.auth().signIn(withEmail: email, password: password).user
+            try? await loadUserData()
         } catch {
             print("DEBUG: Failed to login user with error: \(error.localizedDescription)")
+			throw error
         }
     }
 
