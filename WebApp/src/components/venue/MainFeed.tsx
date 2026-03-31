@@ -119,19 +119,14 @@ export function MainFeed() {
   const [error, setError] = useState<string | null>(null);
   const [radius, setRadius] = useState(9999);
 
+  // Carga venues inmediatamente sin esperar ubicación
   useEffect(() => {
-    if (geoLoading) return;
     setLoading(true);
     setError(null);
     async function load() {
       try {
-        if (coordinates && radius < 9999) {
-          const data = await getVenuesSortedByDistance(coordinates.lat, coordinates.lon, radius);
-          setVenues(data);
-        } else {
-          const data = await getActiveVenues();
-          setVenues(data);
-        }
+        const data = await getActiveVenues();
+        setVenues(data);
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : String(err);
         setError(msg);
@@ -141,6 +136,20 @@ export function MainFeed() {
       }
     }
     load();
+  }, []);
+
+  // Cuando llega la ubicación, re-ordena por distancia si el radio no es "Todos"
+  useEffect(() => {
+    if (geoLoading || !coordinates || radius === 9999) return;
+    async function reloadWithDistance() {
+      try {
+        const data = await getVenuesSortedByDistance(coordinates!.lat, coordinates!.lon, radius);
+        setVenues(data);
+      } catch (err) {
+        console.error("Error con filtro de distancia:", err);
+      }
+    }
+    reloadWithDistance();
   }, [coordinates, geoLoading, radius]);
 
   const open = venues.filter((v) => v.status === "open");
