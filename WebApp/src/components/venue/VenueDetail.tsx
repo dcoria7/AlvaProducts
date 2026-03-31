@@ -158,7 +158,7 @@ export function VenueDetail({ venueId }: VenueDetailProps) {
       <div className="relative">
         {venue.media.coverUrl ? (
           <div className="relative w-full h-52">
-            <Image src={venue.media.coverUrl} alt={venue.name} fill className="object-cover" />
+            <Image src={venue.media.coverUrl} alt={venue.name} fill sizes="(max-width: 768px) 100vw, 512px" priority className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           </div>
         ) : (
@@ -179,7 +179,7 @@ export function VenueDetail({ venueId }: VenueDetailProps) {
         <div className="flex items-end gap-4 -mt-8 mb-4">
           <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-white shadow-md border-2 border-white shrink-0">
             {venue.media.logoUrl ? (
-              <Image src={venue.media.logoUrl} alt={venue.name} fill className="object-cover" />
+              <Image src={venue.media.logoUrl} alt={venue.name} fill sizes="64px" className="object-cover" />
             ) : (
               <div className="w-full h-full bg-emerald-50 flex items-center justify-center">
                 <span className="text-2xl font-bold text-emerald-400">{venue.name[0]}</span>
@@ -219,7 +219,7 @@ export function VenueDetail({ venueId }: VenueDetailProps) {
               <p className="text-sm text-emerald-800">{venue.dailyUpdate.text}</p>
               {venue.dailyUpdate.imageUrl && (
                 <div className="relative w-full h-48 mt-3 rounded-xl overflow-hidden">
-                  <Image src={venue.dailyUpdate.imageUrl} alt="Menú del día" fill className="object-cover" />
+                  <Image src={venue.dailyUpdate.imageUrl} alt="Menú del día" fill sizes="(max-width: 768px) 100vw, 512px" className="object-cover" />
                 </div>
               )}
             </div>

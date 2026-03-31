@@ -33,7 +33,7 @@ function GridCard({ venue }: { venue: VenueWithDistance | Venue }) {
     >
       <div className="relative w-full aspect-square bg-gray-100">
         {venue.media.logoUrl ? (
-          <Image src={venue.media.logoUrl} alt={venue.name} fill className="object-cover" />
+          <Image src={venue.media.logoUrl} alt={venue.name} fill sizes="(max-width: 768px) 33vw, 200px" className="object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
             <span className="text-2xl font-bold text-gray-200">{venue.name[0]}</span>
@@ -72,7 +72,7 @@ function FeedCard({ venue }: { venue: VenueWithDistance | Venue }) {
       <Link href={`/venue/${venue.id}`} className="flex items-center gap-3 px-4 py-3">
         <div className="relative w-9 h-9 rounded-full overflow-hidden bg-emerald-50 shrink-0">
           {venue.media.logoUrl ? (
-            <Image src={venue.media.logoUrl} alt={venue.name} fill className="object-cover" />
+            <Image src={venue.media.logoUrl} alt={venue.name} fill sizes="40px" className="object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <span className="text-sm font-bold text-emerald-400">{venue.name[0]}</span>
@@ -91,7 +91,7 @@ function FeedCard({ venue }: { venue: VenueWithDistance | Venue }) {
 
       {update.imageUrl && (
         <Link href={`/venue/${venue.id}`} className="block relative w-full aspect-square">
-          <Image src={update.imageUrl} alt={`Actualización de ${venue.name}`} fill className="object-cover" />
+          <Image src={update.imageUrl} alt={`Actualización de ${venue.name}`} fill sizes="(max-width: 768px) 100vw, 512px" loading="eager" className="object-cover" />
         </Link>
       )}
 

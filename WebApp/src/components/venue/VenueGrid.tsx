@@ -41,6 +41,7 @@ function VenueGridCard({ venue }: { venue: Venue }) {
             src={venue.media.logoUrl}
             alt={venue.name}
             fill
+            sizes="(max-width: 768px) 50vw, 200px"
             className="object-cover"
           />
         ) : (
