@@ -1,0 +1,197 @@
+{
+  "venues": [
+    {
+      "name": "Tacos Don Rafa",
+      "type": "food",
+      "description": "Los mejores tacos de canasta de la colonia. Pastor, bistec, chicharrón y frijoles.",
+      "status": "open",
+      "isActive": true,
+      "tags": ["tacos", "canasta", "ambulante", "económico"],
+      "contact": {
+        "phone": "5215512345678",
+        "botPhone": "5215512345678",
+        "instagram": "tacosdonrafa"
+      },
+      "location": {
+        "coordinates": { "lat": 19.4284, "lng": -99.1276 },
+        "reference": "Col. Doctores, CDMX",
+        "address": null,
+        "isAmbulatory": true
+      },
+      "media": {
+        "logoUrl": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=400&fit=crop",
+        "coverUrl": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&h=400&fit=crop"
+      },
+      "dailyUpdate": {
+        "text": "Hoy tenemos tacos de pastor, bistec y chicharrón 🌮 Ven a visitarnos, estamos en la esquina de siempre.",
+        "imageUrl": "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=600&h=600&fit=crop"
+      },
+      "menuItems": [
+        { "name": "Taco de pastor", "description": "Con piña, cilantro y cebolla", "price": 18, "category": "Tacos", "isAvailable": true, "order": 1 },
+        { "name": "Taco de bistec", "description": "Bistec a la plancha con todo", "price": 20, "category": "Tacos", "isAvailable": true, "order": 2 },
+        { "name": "Taco de chicharrón", "description": "Chicharrón en salsa verde", "price": 18, "category": "Tacos", "isAvailable": true, "order": 3 },
+        { "name": "Taco de frijoles", "description": "Frijoles de olla con queso", "price": 15, "category": "Tacos", "isAvailable": true, "order": 4 },
+        { "name": "Agua fresca", "description": "Jamaica, horchata o limón", "price": 20, "category": "Bebidas", "isAvailable": true, "order": 5 }
+      ]
+    },
+    {
+      "name": "Estética Glamour",
+      "type": "service",
+      "description": "Cortes, tintes y peinados a domicilio o en casa. Más de 10 años de experiencia.",
+      "status": "open",
+      "isActive": true,
+      "tags": ["estética", "domicilio", "cortes", "tintes"],
+      "contact": {
+        "phone": "5215598765432",
+        "botPhone": "5215598765432",
+        "instagram": "esteticaglamour"
+      },
+      "location": {
+        "coordinates": { "lat": 19.4320, "lng": -99.1350 },
+        "reference": "Col. Roma Norte, CDMX",
+        "address": null,
+        "isAmbulatory": false
+      },
+      "media": {
+        "logoUrl": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=400&fit=crop",
+        "coverUrl": null
+      },
+      "dailyUpdate": {
+        "text": "¡Disponible hoy! Cortes desde $150 y tintes desde $350. Agenda tu cita 💇‍♀️",
+        "imageUrl": null
+      },
+      "services": [
+        { "name": "Corte de cabello dama", "description": "Incluye lavado y secado", "price": 150, "duration": 45, "isAvailable": true, "order": 1 },
+        { "name": "Corte de cabello caballero", "description": "Corte y peinado", "price": 100, "duration": 30, "isAvailable": true, "order": 2 },
+        { "name": "Tinte completo", "description": "Tinte + corte de puntas", "price": 350, "duration": 90, "isAvailable": true, "order": 3 },
+        { "name": "Mechas / Highlights", "description": "Mechas naturales con técnica babylights", "price": 500, "duration": 120, "isAvailable": true, "order": 4 },
+        { "name": "Peinado para evento", "description": "Chongo, ondas o lacio", "price": 250, "duration": 60, "isAvailable": true, "order": 5 }
+      ]
+    },
+    {
+      "name": "Postrecitos by Gaby",
+      "type": "food",
+      "description": "Postres caseros hechos con amor. Pasteles, gelatinas, flanes y más. Pedidos al WhatsApp.",
+      "status": "open",
+      "isActive": true,
+      "tags": ["postres", "pasteles", "casero", "pedidos"],
+      "contact": {
+        "phone": "5215534567890",
+        "botPhone": "5215534567890",
+        "instagram": "postrecitosbygaby"
+      },
+      "location": {
+        "coordinates": { "lat": 19.4150, "lng": -99.1680 },
+        "reference": "Col. Narvarte, CDMX",
+        "address": "Insurgentes Sur 423, int. 3",
+        "isAmbulatory": false
+      },
+      "media": {
+        "logoUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop",
+        "coverUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&h=400&fit=crop"
+      },
+      "dailyUpdate": {
+        "text": "🍰 Hoy disponible: Pastel de tres leches y gelatina de mosaico. Pedidos mínimo con 2 horas de anticipación.",
+        "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=600&fit=crop"
+      },
+      "menuItems": [
+        { "name": "Pastel de tres leches", "description": "Porción individual o kilo completo", "price": 85, "category": "Pasteles", "isAvailable": true, "order": 1 },
+        { "name": "Pastel de chocolate", "description": "Con betún de chocolate amargo", "price": 90, "category": "Pasteles", "isAvailable": true, "order": 2 },
+        { "name": "Gelatina de mosaico", "description": "Para 8 personas", "price": 120, "category": "Gelatinas", "isAvailable": true, "order": 3 },
+        { "name": "Flan napolitano", "description": "Porción individual", "price": 45, "category": "Flanes", "isAvailable": true, "order": 4 }
+      ]
+    },
+    {
+      "name": "Plomería 24h Don Pepe",
+      "type": "service",
+      "description": "Servicio de plomería a domicilio. Fugas, tuberías, boiler, destapado. Disponible 24 horas.",
+      "status": "closed",
+      "isActive": true,
+      "tags": ["plomería", "24 horas", "domicilio", "urgencias"],
+      "contact": {
+        "phone": "5215556789012",
+        "botPhone": "5215556789012",
+        "instagram": null
+      },
+      "location": {
+        "coordinates": { "lat": 19.4400, "lng": -99.1200 },
+        "reference": "Col. Guerrero, CDMX",
+        "address": null,
+        "isAmbulatory": true
+      },
+      "media": {
+        "logoUrl": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+        "coverUrl": null
+      },
+      "dailyUpdate": null,
+      "services": [
+        { "name": "Destapado de drenaje", "description": "Con equipo profesional", "price": 350, "duration": 60, "isAvailable": true, "order": 1 },
+        { "name": "Reparación de fuga", "description": "Diagnóstico incluido", "price": 450, "duration": 90, "isAvailable": true, "order": 2 },
+        { "name": "Instalación de boiler", "description": "Mano de obra, material aparte", "price": 600, "duration": 120, "isAvailable": true, "order": 3 },
+        { "name": "Revisión general", "description": "Revisión de toda la instalación", "price": 200, "duration": 45, "isAvailable": true, "order": 4 }
+      ]
+    },
+    {
+      "name": "Jugos y Smoothies Frescos",
+      "type": "food",
+      "description": "Jugos naturales, smoothies y bowls de fruta. Sin azúcar añadida. Pedidos por WhatsApp.",
+      "status": "open",
+      "isActive": true,
+      "tags": ["jugos", "smoothies", "saludable", "fruta"],
+      "contact": {
+        "phone": "5215578901234",
+        "botPhone": "5215578901234",
+        "instagram": "jugosfrescos_cdmx"
+      },
+      "location": {
+        "coordinates": { "lat": 19.4260, "lng": -99.1450 },
+        "reference": "Col. Condesa, CDMX",
+        "address": null,
+        "isAmbulatory": true
+      },
+      "media": {
+        "logoUrl": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=400&h=400&fit=crop",
+        "coverUrl": null
+      },
+      "dailyUpdate": {
+        "text": "🍓 Smoothie especial del día: fresa, plátano y avena. Solo $55. Disponible hasta agotar existencias.",
+        "imageUrl": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=600&fit=crop"
+      },
+      "menuItems": [
+        { "name": "Jugo verde", "description": "Nopal, pepino, apio, limón y jengibre", "price": 45, "category": "Jugos", "isAvailable": true, "order": 1 },
+        { "name": "Jugo naranja zanahoria", "description": "Natural, sin azúcar", "price": 40, "category": "Jugos", "isAvailable": true, "order": 2 },
+        { "name": "Smoothie de fresa", "description": "Fresa, plátano y avena", "price": 55, "category": "Smoothies", "isAvailable": true, "order": 3 },
+        { "name": "Bowl de fruta", "description": "Fruta de temporada con granola y miel", "price": 70, "category": "Bowls", "isAvailable": true, "order": 4 }
+      ]
+    },
+    {
+      "name": "Masajes Terapéuticos Karla",
+      "type": "service",
+      "description": "Masajes relajantes y terapéuticos a domicilio. Relájate sin salir de casa.",
+      "status": "closed",
+      "isActive": true,
+      "tags": ["masajes", "relajación", "domicilio", "terapéutico"],
+      "contact": {
+        "phone": "5215590123456",
+        "botPhone": "5215590123456",
+        "instagram": "masajeskarla"
+      },
+      "location": {
+        "coordinates": { "lat": 19.4350, "lng": -99.1550 },
+        "reference": "Col. Polanco, CDMX",
+        "address": null,
+        "isAmbulatory": true
+      },
+      "media": {
+        "logoUrl": "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&h=400&fit=crop",
+        "coverUrl": null
+      },
+      "dailyUpdate": null,
+      "services": [
+        { "name": "Masaje relajante 60 min", "description": "Aromaterapia incluida", "price": 400, "duration": 60, "isAvailable": true, "order": 1 },
+        { "name": "Masaje terapéutico 90 min", "description": "Enfocado en zonas de tensión", "price": 550, "duration": 90, "isAvailable": true, "order": 2 },
+        { "name": "Masaje de pies", "description": "Reflexología podal 30 min", "price": 200, "duration": 30, "isAvailable": true, "order": 3 }
+      ]
+    }
+  ]
+}
