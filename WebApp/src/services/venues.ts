@@ -134,3 +134,16 @@ export async function getVenuesByOwner(ownerId: string): Promise<Venue[]> {
   const snapshot = await getDocs(q);
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Venue));
 }
+
+// Venues con dailyUpdate reciente para el feed social
+export async function getFeedVenues(): Promise<Venue[]> {
+  const q = query(
+    collection(db, VENUES_COLLECTION),
+    where("isActive", "==", true),
+    orderBy("dailyUpdate.updatedAt", "desc")
+  );
+  const snapshot = await getDocs(q);
+  return snapshot.docs
+    .map((d) => ({ id: d.id, ...d.data() } as Venue))
+    .filter((v) => v.dailyUpdate?.text || v.dailyUpdate?.imageUrl);
+}
