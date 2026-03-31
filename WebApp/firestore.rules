@@ -2,31 +2,29 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Venues: cualquiera puede leer venues activos, solo el dueño puede escribir
+    // Venues: lectura pública sin restricción (cualquiera puede ver negocios)
     match /venues/{venueId} {
-      allow read: if resource.data.isActive == true;
+      allow read: if true;
       allow create: if request.auth != null
                     && request.resource.data.ownerId == request.auth.uid;
       allow update: if request.auth != null
                     && resource.data.ownerId == request.auth.uid;
-      allow delete: if false; // nunca se borra, solo se desactiva
+      allow delete: if false;
 
-      // Menú: cualquiera puede leer, solo el dueño puede escribir
       match /menuItems/{itemId} {
-        allow read: if get(/databases/$(database)/documents/venues/$(venueId)).data.isActive == true;
+        allow read: if true;
         allow write: if request.auth != null
                      && get(/databases/$(database)/documents/venues/$(venueId)).data.ownerId == request.auth.uid;
       }
 
-      // Servicios: igual que menú
       match /services/{serviceId} {
-        allow read: if get(/databases/$(database)/documents/venues/$(venueId)).data.isActive == true;
+        allow read: if true;
         allow write: if request.auth != null
                      && get(/databases/$(database)/documents/venues/$(venueId)).data.ownerId == request.auth.uid;
       }
     }
 
-    // Usuarios / dueños: solo el propio usuario puede leer y escribir su perfil
+    // Usuarios: solo el propio usuario puede leer y escribir su perfil
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }

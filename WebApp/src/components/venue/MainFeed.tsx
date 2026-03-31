@@ -116,11 +116,13 @@ export function MainFeed() {
   const { coordinates, loading: geoLoading } = useGeolocation();
   const [venues, setVenues] = useState<(VenueWithDistance | Venue)[]>([]);
   const [loading, setLoading] = useState(true);
-  const [radius, setRadius] = useState(9999); // "Todos" por defecto hasta tener usuarios reales en CDMX
+  const [error, setError] = useState<string | null>(null);
+  const [radius, setRadius] = useState(9999);
 
   useEffect(() => {
     if (geoLoading) return;
     setLoading(true);
+    setError(null);
     async function load() {
       try {
         if (coordinates && radius < 9999) {
@@ -130,6 +132,10 @@ export function MainFeed() {
           const data = await getActiveVenues();
           setVenues(data);
         }
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        setError(msg);
+        console.error("Error cargando venues:", err);
       } finally {
         setLoading(false);
       }
@@ -176,6 +182,11 @@ export function MainFeed() {
       {loading ? (
         <div className="flex items-center justify-center py-24">
           <Loader2 className="w-8 h-8 animate-spin text-gray-300" />
+        </div>
+      ) : error ? (
+        <div className="px-4 py-8 text-center">
+          <p className="text-sm font-medium text-red-500 mb-2">Error al cargar negocios</p>
+          <p className="text-xs text-gray-400 break-all">{error}</p>
         </div>
       ) : venues.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 gap-2 px-8 text-center">
