@@ -13,8 +13,8 @@
         "instagram": "tacosdonrafa"
       },
       "location": {
-        "coordinates": { "lat": 19.4284, "lng": -99.1276 },
-        "reference": "Col. Doctores, CDMX",
+        "coordinates": { "lat": 20.7214, "lng": -103.3916 },
+        "reference": "Col. Centro, Zapopan",
         "address": null,
         "isAmbulatory": true
       },
@@ -47,8 +47,8 @@
         "instagram": "esteticaglamour"
       },
       "location": {
-        "coordinates": { "lat": 19.4320, "lng": -99.1350 },
-        "reference": "Col. Roma Norte, CDMX",
+        "coordinates": { "lat": 20.7280, "lng": -103.4050 },
+        "reference": "Col. Jardines del Bosque, Zapopan",
         "address": null,
         "isAmbulatory": false
       },
@@ -81,9 +81,9 @@
         "instagram": "postrecitosbygaby"
       },
       "location": {
-        "coordinates": { "lat": 19.4150, "lng": -99.1680 },
-        "reference": "Col. Narvarte, CDMX",
-        "address": "Insurgentes Sur 423, int. 3",
+        "coordinates": { "lat": 20.7150, "lng": -103.3800 },
+        "reference": "Col. Chapalita, Zapopan",
+        "address": "Av. Guadalupe 1234, int. 3",
         "isAmbulatory": false
       },
       "media": {
@@ -114,8 +114,8 @@
         "instagram": null
       },
       "location": {
-        "coordinates": { "lat": 19.4400, "lng": -99.1200 },
-        "reference": "Col. Guerrero, CDMX",
+        "coordinates": { "lat": 20.7350, "lng": -103.3750 },
+        "reference": "Col. Zapopan Centro, Zapopan",
         "address": null,
         "isAmbulatory": true
       },
@@ -144,8 +144,8 @@
         "instagram": "jugosfrescos_cdmx"
       },
       "location": {
-        "coordinates": { "lat": 19.4260, "lng": -99.1450 },
-        "reference": "Col. Condesa, CDMX",
+        "coordinates": { "lat": 20.7190, "lng": -103.4100 },
+        "reference": "Col. Ciudad Granja, Zapopan",
         "address": null,
         "isAmbulatory": true
       },
@@ -177,8 +177,8 @@
         "instagram": "masajeskarla"
       },
       "location": {
-        "coordinates": { "lat": 19.4350, "lng": -99.1550 },
-        "reference": "Col. Polanco, CDMX",
+        "coordinates": { "lat": 20.7420, "lng": -103.3950 },
+        "reference": "Col. Paseos del Sol, Zapopan",
         "address": null,
         "isAmbulatory": true
       },
