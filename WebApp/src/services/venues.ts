@@ -10,7 +10,6 @@ import {
   orderBy,
   serverTimestamp,
   increment,
-  GeoPoint,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Venue, MenuItem, Service, VenueWithDistance } from "@/types";
@@ -29,14 +28,19 @@ function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number): nu
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+// Query simple sin orderBy — evita índices compuestos, ordena en cliente
 export async function getActiveVenues(): Promise<Venue[]> {
   const q = query(
     collection(db, VENUES_COLLECTION),
-    where("isActive", "==", true),
-    orderBy("statusUpdatedAt", "desc")
+    where("isActive", "==", true)
   );
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Venue));
+  const venues = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Venue));
+  // Abiertos primero, luego por nombre
+  return venues.sort((a, b) => {
+    if (a.status === b.status) return a.name.localeCompare(b.name);
+    return a.status === "open" ? -1 : 1;
+  });
 }
 
 export async function getVenuesSortedByDistance(
@@ -62,24 +66,27 @@ export async function getVenueById(venueId: string): Promise<Venue | null> {
   return { id: snap.id, ...snap.data() } as Venue;
 }
 
+// Sin índice compuesto — filtra y ordena en cliente
 export async function getMenuItems(venueId: string): Promise<MenuItem[]> {
   const q = query(
     collection(db, VENUES_COLLECTION, venueId, "menuItems"),
-    where("isAvailable", "==", true),
     orderBy("order", "asc")
   );
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as MenuItem));
+  return snapshot.docs
+    .map((d) => ({ id: d.id, ...d.data() } as MenuItem))
+    .filter((item) => item.isAvailable);
 }
 
 export async function getServices(venueId: string): Promise<Service[]> {
   const q = query(
     collection(db, VENUES_COLLECTION, venueId, "services"),
-    where("isAvailable", "==", true),
     orderBy("order", "asc")
   );
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Service));
+  return snapshot.docs
+    .map((d) => ({ id: d.id, ...d.data() } as Service))
+    .filter((s) => s.isAvailable);
 }
 
 export async function incrementVenueViews(venueId: string): Promise<void> {
@@ -135,15 +142,14 @@ export async function getVenuesByOwner(ownerId: string): Promise<Venue[]> {
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Venue));
 }
 
-// Venues con dailyUpdate reciente para el feed social
+// Venues con dailyUpdate — filtra y ordena en cliente, sin índice compuesto
 export async function getFeedVenues(): Promise<Venue[]> {
-  const q = query(
-    collection(db, VENUES_COLLECTION),
-    where("isActive", "==", true),
-    orderBy("dailyUpdate.updatedAt", "desc")
-  );
-  const snapshot = await getDocs(q);
-  return snapshot.docs
-    .map((d) => ({ id: d.id, ...d.data() } as Venue))
-    .filter((v) => v.dailyUpdate?.text || v.dailyUpdate?.imageUrl);
+  const venues = await getActiveVenues();
+  return venues
+    .filter((v) => v.dailyUpdate?.text || v.dailyUpdate?.imageUrl)
+    .sort((a, b) => {
+      const aTs = (a.dailyUpdate?.updatedAt as unknown as { seconds: number })?.seconds ?? 0;
+      const bTs = (b.dailyUpdate?.updatedAt as unknown as { seconds: number })?.seconds ?? 0;
+      return bTs - aTs;
+    });
 }

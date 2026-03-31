@@ -116,7 +116,7 @@ export function MainFeed() {
   const { coordinates, loading: geoLoading } = useGeolocation();
   const [venues, setVenues] = useState<(VenueWithDistance | Venue)[]>([]);
   const [loading, setLoading] = useState(true);
-  const [radius, setRadius] = useState(5);
+  const [radius, setRadius] = useState(9999); // "Todos" por defecto hasta tener usuarios reales en CDMX
 
   useEffect(() => {
     if (geoLoading) return;
