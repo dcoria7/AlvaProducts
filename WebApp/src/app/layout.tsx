@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { BottomNav } from "@/components/layout/BottomNav";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"] });
@@ -15,7 +14,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body className={`${geist.className} antialiased bg-gray-50`}>
         {children}
-        <BottomNav />
       </body>
     </html>
   );

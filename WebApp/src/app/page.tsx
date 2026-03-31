@@ -1,12 +1,12 @@
 import { Header } from "@/components/layout/Header";
-import { SocialFeed } from "@/components/venue/SocialFeed";
+import { MainFeed } from "@/components/venue/MainFeed";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-6">
       <Header />
       <main className="max-w-lg mx-auto">
-        <SocialFeed />
+        <MainFeed />
       </main>
     </div>
   );
