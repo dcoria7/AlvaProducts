@@ -1,35 +1,34 @@
-import { Timestamp, GeoPoint } from "firebase/firestore";
-
 export type VenueType = "food" | "service" | "both";
 export type VenueStatus = "open" | "closed";
 
 export interface VenueLocation {
-  coordinates: GeoPoint;
-  reference: string;       // "Col. Narvarte, CDMX"
-  address: string | null;  // solo si tiene dirección física
-  isAmbulatory: boolean;
+  lat: number;
+  lng: number;
+  reference: string;
+  address: string | null;
+  is_ambulatory: boolean;
 }
 
 export interface VenueContact {
-  phone: string;           // número que el usuario ve y contacta
-  botPhone: string;        // número desde donde el dueño manda comandos al bot
+  phone: string;
+  bot_phone: string;
   instagram: string | null;
 }
 
 export interface VenueMedia {
-  logoUrl: string;
-  coverUrl: string | null;
+  logo_url: string | null;
+  cover_url: string | null;
 }
 
 export interface DailyUpdate {
   text: string | null;
-  imageUrl: string | null;
-  updatedAt: Timestamp;
+  image_url: string | null;
+  updated_at: string;
 }
 
 export interface VenueStats {
   views: number;
-  whatsappTaps: number;
+  whatsapp_taps: number;
 }
 
 export interface Venue {
@@ -38,54 +37,55 @@ export interface Venue {
   type: VenueType;
   description: string;
   status: VenueStatus;
-  statusUpdatedAt: Timestamp;
-  isActive: boolean;
+  status_updated_at: string;
+  is_active: boolean;
   contact: VenueContact;
   location: VenueLocation;
   media: VenueMedia;
-  dailyUpdate: DailyUpdate | null;
+  daily_update: DailyUpdate | null;
   stats: VenueStats;
   tags: string[];
-  ownerId: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  owner_id: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface MenuItem {
   id: string;
+  venue_id: string;
   name: string;
   description: string | null;
   price: number | null;
-  imageUrl: string | null;
+  image_url: string | null;
   category: string;
-  isAvailable: boolean;
+  is_available: boolean;
   order: number;
-  createdAt: Timestamp;
+  created_at: string;
 }
 
 export interface Service {
   id: string;
+  venue_id: string;
   name: string;
   description: string | null;
   price: number | null;
-  duration: number | null; // minutos, para citas en v2
-  imageUrl: string | null;
-  isAvailable: boolean;
+  duration: number | null;
+  image_url: string | null;
+  is_available: boolean;
   order: number;
-  createdAt: Timestamp;
+  created_at: string;
 }
 
 export interface Owner {
   id: string;
-  displayName: string;
+  display_name: string;
   email: string;
   phone: string;
-  venueIds: string[];
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  venue_ids: string[];
+  created_at: string;
+  updated_at: string;
 }
 
-// Venue con distancia calculada (para el feed del consumidor)
 export interface VenueWithDistance extends Venue {
-  distanceKm: number;
+  distance_km: number;
 }

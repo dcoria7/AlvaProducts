@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/Header";
 import { VenueGrid } from "@/components/venue/VenueGrid";
 
+export const dynamic = "force-dynamic";
+
 export default function NegociosPage() {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
