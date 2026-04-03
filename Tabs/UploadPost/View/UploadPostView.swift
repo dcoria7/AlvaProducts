@@ -1,12 +1,13 @@
 //
 //  UploadPostView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 04/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import PhotosUI
 import SwiftUI
+import JDStatusBarNotification
 
 struct UploadPostView: View {
     @State private var imagePickerPresented = false
@@ -22,25 +23,34 @@ struct UploadPostView: View {
                 Button {
                     clearPostDataAndReturnToFeed()
                 } label: {
-                    Text("Cancel")
+                    Text("Cancelar") // TODO: Localize
                 }
 
                 Spacer()
 
-                Text("New Post")
+                Text("Nuevo Post") // TODO: Localize
                     .fontWeight(.semibold)
 
                 Spacer()
 
                 Button {
+					NotificationPresenter.shared.present("Cargando...")
+					
                     Task {
-                        try await viewModel.uploadPost(caption: viewModel.caption)
+						do {
+							try await viewModel.uploadPost(caption: viewModel.caption)
+							print("finished")
+						} catch {
+							print("something went wrong")
+						}
+						NotificationPresenter.shared.dismiss()
                         clearPostDataAndReturnToFeed()
                     }
                 } label: {
-                    Text("Upload")
+                    Text("Enviar") // TODO: Localize
                         .fontWeight(.semibold)
                 }
+				.disabled(viewModel.isPostButtonDisabled)
             }
             .padding(.horizontal)
 
@@ -53,16 +63,21 @@ struct UploadPostView: View {
                         .frame(width: 100, height: 100)
                         .clipped()
                 }
-                TextField("Enter your caption...", text: $viewModel.caption, axis: .vertical)
+                TextField("Agrega la descripción ...", text: $viewModel.caption, axis: .vertical)
             }
             .padding()
 
             Spacer()
         }
-        .background(Color.gray)
+		.setDefaultBackgroundColor()
         .onAppear {
             imagePickerPresented.toggle()
         }
+		.onChange(isFalse: imagePickerPresented) {
+			if viewModel.selectedImage == nil {
+				clearPostDataAndReturnToFeed()
+			}
+		}
         .photosPicker(isPresented: $imagePickerPresented, selection: $viewModel.selectedImage)
     }
     

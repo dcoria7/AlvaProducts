@@ -1,31 +1,40 @@
 //
 //  CurrentUserProfileView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
 
 struct CurrentUserProfileView: View {
-    let user: User
-    let venue: Venue
-    
-    var body: some View {
-        NavigationStack {
-            ProfileView(user: user, venue: venue)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            AuthService.shared.signOut()
-                        } label: {
-                            Image(systemName: "line.3.horizontal")
-                                .foregroundColor(.primary)
-                        }
-                    }
-                }
-        }
-    }
+	let user: User
+	let venue: Venue
+	
+	@State private var settingsTapped: Bool = false
+	
+	// TODO: Localize
+	let alertTitle: String = "Cerrar sesión?"
+	
+	var body: some View {
+		NavigationStack {
+			ProfileView(venue: venue)
+				.toolbar {
+					ToolbarItem(placement: .navigationBarTrailing) {
+						Button {
+							settingsTapped.toggle()
+						} label: {
+							Image(systemName: "gear")
+								.imageScale(.large)
+						}
+					}
+				}
+				.navigationDestination(isPresented: $settingsTapped) {
+					AppSettingsView()
+				}
+		}
+		.setDefaultBackgroundColor()
+	}
 }
 
 struct CurrentUserProfileView_Previews: PreviewProvider {

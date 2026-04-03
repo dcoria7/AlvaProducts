@@ -1,8 +1,8 @@
 //
 //  CompleteSignUpView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
@@ -33,7 +33,7 @@ struct CompleteSignUpView: View {
                 Text("Complete Sign Up")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+					.foregroundStyle(Color.customBlack())
                     .frame(width: 360, height: 44)
                     .background(Color(.systemBlue))
                     .cornerRadius(8)

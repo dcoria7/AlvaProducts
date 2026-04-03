@@ -1,81 +1,78 @@
 //
 //  FeedView.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 02/06/23.
 //
 
 import SwiftUI
 import FirebaseFirestore
+import Firebase
 
 struct FeedView: View {
-//    @Environment(\.colorScheme) var colorScheme
-    @State private var profileTapped: Bool = false
-    @State private var logoutTapped: Bool = false
+    @State private var settingsTapped: Bool = false
+	@State private var venueTapped: Bool = false
     @StateObject var viewModel = FeedViewModel()
     
     let user: User?
+	var coordinator: AppCoordinator
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 24) {
                     ForEach(viewModel.posts) {post in
-                        FeedCell(post: post, user: user) {
-                            if let user {
-                                Task {
-                                    try await viewModel.toggleLike(postId: post.id, uid: user.id)
-                                }
-                            }
+						FeedCell(post: post) {
+//							coordinator.goToVenueDetail(userID: post.venue?.userId ?? "", venue: post.venue!)
                         }
                     }
                 }
-                .padding(.top, 8)
             }
             .navigationBarTitleDisplayMode(.inline)
+			.navigationBarColor(tintColor: UIColor.customBlack())
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Image("instagram-black")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100)
+				ToolbarItem(placement: .principal) {
+					Image(systemName: "house")
+						
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     
                     Button(action: {
-                        if user != nil {
-                            logoutTapped.toggle()
-                        } else {
-                            profileTapped.toggle()
-                        }
+						settingsTapped.toggle()
                     }) {
-                        Image(systemName: "person")
+                        Image(systemName: "gear")
                             .imageScale(.large)
                     }
                 }
             }
             .onAppear {
+				Tracker.trackFeedEvent()
+				
                 Task {
-                    try await viewModel.fetchPosts()
+					try await viewModel.fetchPosts()
                 }
             }
-            .navigationDestination(isPresented: $profileTapped) {
-                LoginView(user: user)
-            }
-            .alert("Cerrar Sesión?", isPresented: $logoutTapped) {
-                Button("OK", role: .cancel) {
-                    AuthService.shared.signOut()
-                }
-                Button("Cancelar", role: .destructive) { }
-            }
-            .background(Color.gray)
+			.refreshable {
+				
+				viewModel.posts = []
+				viewModel.lastDocument = nil
+				
+				Task {
+					try await viewModel.fetchPosts()
+				}
+			}
+			.navigationDestination(isPresented: $settingsTapped) {
+				AppSettingsView()
+			}
+//			.navigationDestination(isPresented: $venueTapped) {
+//				
+//			}
+			.setDefaultBackgroundColor()
         }
         
     }
 }
 
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView(user: User.mockUsers[0])
-    }
-}
+//struct FeedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//		FeedView(user: User.mockUsers[0], coordinator: AppCoordinator())
+//    }
+//}

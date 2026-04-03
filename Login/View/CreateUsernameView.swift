@@ -1,8 +1,8 @@
 //
 //  CreateUsernameView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
@@ -19,7 +19,7 @@ struct CreateUsernameView: View {
                 .padding(.top)
             Text("Pick a username for your new account. You can always change it later.")
                 .font(.footnote)
-                .foregroundColor(.gray)
+				.foregroundColor(.green)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             TextField("Username", text: $viewModel.username)
@@ -34,7 +34,7 @@ struct CreateUsernameView: View {
                 Text("Next")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+					.foregroundStyle(Color.customBlack())
                     .frame(width: 360, height: 44)
                     .background(Color(.systemBlue))
                     .cornerRadius(8)

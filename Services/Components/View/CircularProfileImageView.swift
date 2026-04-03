@@ -1,8 +1,8 @@
 //
 //  CircularProfileImageView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 06/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import Kingfisher
@@ -29,7 +29,7 @@ enum ProfileImageSize {
 }
 
 struct CircularProfileImageView: View {
-    let user: User
+//    let user: User
     let venue: Venue?
     let size: ProfileImageSize
 
@@ -79,6 +79,6 @@ struct CircularUsersImageView: View {
 
 struct CircularProfileImageView_Previews: PreviewProvider {
     static var previews: some View {
-        CircularProfileImageView(user: User.mockUsers[0], venue: User.mockVenue[0], size: .large)
+        CircularProfileImageView(venue: User.mockVenue[0], size: .large)
     }
 }

@@ -1,8 +1,8 @@
 //
 //  UploadPostViewModel.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 04/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import Firebase
@@ -10,6 +10,7 @@ import PhotosUI
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
+import Combine
 
 class UploadPostViewModel: ObservableObject {
     @Published var selectedImage: PhotosPickerItem? {
@@ -20,10 +21,25 @@ class UploadPostViewModel: ObservableObject {
         }
     }
     
-    @Published var postImage: Image?
+	@Published var isPostButtonDisabled: Bool = true
+    @Published var postImage: Image? = nil
     @Published var caption = ""
     
     private var uiImage: UIImage?
+	
+	init() {
+		
+		// Binding
+		Publishers
+			.CombineLatest(
+				$caption,
+				$postImage
+			)
+			.map { caption, postImage in
+				caption.isEmptyOrWhitespace() && postImage != nil
+			}
+			.assign(to: &$isPostButtonDisabled)
+	}
     
     @MainActor
     func loadImage(fromItem item: PhotosPickerItem?) async {
@@ -46,6 +62,11 @@ class UploadPostViewModel: ObservableObject {
         let post = Post(id: postRef.documentID, ownerUid: uid, caption: caption, likes: 0, imageUrl: imageUrl, timestamp: Timestamp(), venue: currentVenue)
         
         guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
-        try await postRef.setData(encodedPost)
+//		do {
+			try await postRef.setData(encodedPost)
+//			return true
+//		} catch {
+//			return false
+//		}
     }
 }

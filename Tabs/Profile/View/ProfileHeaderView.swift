@@ -1,8 +1,6 @@
 //
 //  ProfileHeaderView.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 04/06/23.
 //
 
 import Kingfisher
@@ -10,69 +8,97 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     @State private var showEditProfile = false
-    @EnvironmentObject var viewModel: PostGridViewModel
+	@ObservedObject var viewModel: PostClientGridViewModel
 
     var body: some View {
         VStack(spacing: 10) {
-            // pic and status
+            
+			// pic and status
             HStack {
-                CircularProfileImageView(user: viewModel.user, venue: viewModel.venue, size: .large)
-                Spacer()
-                UserStatView(value: viewModel.postsCount, title: "Posts")
-                UserStatView(value: 1, title: "Followers")
-                UserStatView(value: 2, title: "Following")
+				VStack {
+					CircularProfileImageView(venue: viewModel.venue, size: .large)
+					
+					VStack {
+						Text(viewModel.isActive ? "Abierto" : "Cerrado")
+							.foregroundColor(viewModel.isActive ? .green : .gray)
+						Toggle("", isOn: $viewModel.isActive)
+							.labelsHidden()
+							.toggleStyle(SwitchToggleStyle(tint: viewModel.isActive ? .green : .indigo))
+							.onChange(of: viewModel.isActive) { oldValue, newValue in
+								Task {
+									try await viewModel.updateVenueStatus(newValue: newValue)
+								}
+							}
+					}
+					.padding()
+					.frame(width: 100)
+					.overlay(
+						RoundedRectangle(cornerRadius: 15)
+							.stroke(lineWidth: 2)
+							.foregroundColor(viewModel.isActive ? .green : .gray)
+					)
+					
+					//                UserStatView(value: viewModel.postsCount, title: "Posts")
+				}
+				
+				VStack(alignment: .leading, spacing: 4) {
+					
+					Text(viewModel.title)
+						.foregroundStyle(Color.customBlack())
+						.font(.title3)
+						.fontWeight(.bold)
+					
+					Text("Nombre de la tienda")
+						.foregroundStyle(.gray)
+						.font(.footnote)
+						.fontWeight(.light)
+					
+					Text(viewModel.user?.email ?? "")
+						.foregroundStyle(Color.customBlack())
+						.font(.title3)
+						.fontWeight(.bold)
+						.padding(.top, 15)
+					
+					Text("Correo")
+						.foregroundStyle(.gray)
+						.font(.footnote)
+						.fontWeight(.light)
+					
+				}
+				.frame(maxWidth: .infinity, alignment: .top)
+				.padding(.horizontal)
+				
+					
             }
             .padding(.horizontal)
-            //                .padding(.bottom, 4)
-
-            // Name and Bio
-            VStack(alignment: .leading, spacing: 4) {
-                let fullname = viewModel.user.username
-                Text(fullname)
-                    .font(.footnote)
-                    .fontWeight(.semibold)
-                
-                if let bio = viewModel.user.bio {
-                    Text(bio)
-                        .font(.footnote)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
+			.padding(.bottom, 10)
+			.padding(.top, 10)
 
             // Action Button
-            Button {
-                if viewModel.user.isCurrentUser {
-                    showEditProfile.toggle()
-                } else {
-                    print("Follow user...")
-                }
-            } label: {
-                Text(viewModel.user.isCurrentUser ? "Edit Profile" : "Follow")
+			Button {
+				showEditProfile.toggle()
+			} label: {
+                Text("Edit Profile")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .frame(width: 360, height: 34)
-                    .background(viewModel.user.isCurrentUser ? nil : Color(.systemBlue))
-                    .foregroundColor(viewModel.user.isCurrentUser ? nil : .white)
+					.background(Color.customWhite())
                     .cornerRadius(6)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .strokeBorder(viewModel.user.isCurrentUser ?
-                                Color.gray : .clear, lineWidth: 1
-                            )
+							.strokeBorder(Color.customBlack(), lineWidth: 1)
                     )
             }
 
             Divider()
         }
-        .fullScreenCover(isPresented: $showEditProfile) {
-            EditProfileView(user: viewModel.user)
-        }
-    }
-}
-
-struct ProfileHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileHeaderView()
-    }
+		.fullScreenCover(isPresented: $showEditProfile,
+						 onDismiss: {
+							Task {
+								try await viewModel.fetchVenue(userId: viewModel.userId)
+							}}
+		) {
+			EditProfileView(user: viewModel.getCurrentUser(), venue: viewModel.venue)
+		}
+	}
 }

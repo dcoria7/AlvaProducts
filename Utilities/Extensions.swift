@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import Combine
+import Firebase
 
 extension UIApplication {
     var currentScene: UIWindowScene? {
@@ -56,4 +57,29 @@ extension Publisher {
             }
         )
     }
+}
+
+extension Query {
+//	func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
+//		let snapshot = try await self.getDocuments()
+//		
+//		return try snapshot.documents.map { document in
+//			try document.data(as: T.self)
+//		}
+//	}
+	
+	func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
+		let (posts, _) = try await getDocumentsWithSnapshot(as: type)
+		return posts
+	}
+	
+	func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> ([T], DocumentSnapshot?) where T : Decodable {
+		let snapshot = try await self.getDocuments()
+		
+		let posts = try snapshot.documents.map { document in
+			try document.data(as: T.self)
+		}
+		
+		return (posts, snapshot.documents.last)
+	}
 }

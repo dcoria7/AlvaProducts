@@ -1,8 +1,8 @@
 //
 //  CreatePasswordView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
@@ -19,7 +19,7 @@ struct CreatePasswordView: View {
                 .padding(.top)
             Text("Your password must be at least 6 characters in length")
                 .font(.footnote)
-                .foregroundColor(.gray)
+				.foregroundColor(.green)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             SecureField("Password", text: $viewModel.password)
@@ -39,7 +39,7 @@ struct CreatePasswordView: View {
                 Text("Next")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+					.foregroundStyle(Color.customBlack())
                     .frame(width: 360, height: 44)
                     .background(Color(.systemBlue))
                     .cornerRadius(8)

@@ -1,8 +1,6 @@
 //
 //  AuthService.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 04/06/23.
 //
 
 import Firebase
@@ -26,11 +24,11 @@ class AuthService {
     @MainActor
     func login(withEmail email: String, password: String) async throws {
         do {
-            let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            userSession = result.user
-            try await loadUserData()
+			userSession = try await Auth.auth().signIn(withEmail: email, password: password).user
+            try? await loadUserData()
         } catch {
             print("DEBUG: Failed to login user with error: \(error.localizedDescription)")
+			throw error
         }
     }
 
@@ -51,7 +49,7 @@ class AuthService {
         do {
             userSession = Auth.auth().currentUser
             guard let currentUid = userSession?.uid else { return }
-            currentVenue = try await UserService.fetchVenue(withUid: currentUid)
+			currentVenue = try await UserService.fetchVenue(withId: currentUid)
             currentUser = try await UserService.fetchUser(withUid: currentUid)
             
         } catch {

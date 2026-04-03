@@ -1,8 +1,8 @@
 //
 //  UserStatView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 02/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI

@@ -1,8 +1,6 @@
 //
 //  UserService.swift
-//  InstaSwift
 //
-//  Created by Bruno Rangel on 06/06/23.
 //
 
 import Firebase
@@ -21,10 +19,42 @@ struct UserService {
         return try snapshot.data(as: User.self)
     }
     
-    static func fetchVenue(withUid userId: String) async throws -> Venue? {
+    static func fetchVenue(withId userId: String) async throws -> Venue? {
         let venuesCollection = Firestore.firestore().collection("venues")
         
         let snapshot = try await venuesCollection.whereField("userId", isEqualTo: userId).getDocuments()
         return snapshot.documents.compactMap({ try? $0.data(as: Venue.self) }).first
     }
+}
+
+extension UserService {
+	private static let venuesCollection = Firestore.firestore().collection("venues")
+	
+	static func updateVenueActive(userID: String, newValue: Bool) {
+		
+//		 try await venuesCollection.document(userID).updateData(["active": newValue])
+		 
+		 venuesCollection.whereField("userId", isEqualTo: userID).getDocuments { (result, error) in
+			if error == nil {
+				for document in result!.documents {
+					document.reference.updateData([
+						"active": newValue
+					])
+					print("Document successfully updated")
+				}
+			} else {
+				print(error.debugDescription)
+			}
+		}
+	}
+}
+
+extension UserService {
+	private static let usersCollection = Firestore.firestore().collection("users")
+	
+	static func updateUser(data: [String: Any]) {
+		
+	}
+	
+	
 }

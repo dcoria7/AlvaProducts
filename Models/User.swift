@@ -1,8 +1,8 @@
 //
 //  User.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import Firebase
@@ -32,6 +32,6 @@ extension User {
     ]
     
     static var mockVenue: [Venue] = [
-        .init(title: "Papas", available: false, date: Date(), active: false)
+		.init(title: "Papas", available: false, date: Date(), active: false, phone: "", network: nil, schedule: "", typeOfVenue: "")
     ]
 }

@@ -1,8 +1,8 @@
 //
 //  AddEmailView.swift
-//  InstaSwift
+//  ClickLocal
 //
-//  Created by Bruno Rangel on 03/06/23.
+//  Created by Daniel Coria on 04/04/24.
 //
 
 import SwiftUI
@@ -19,7 +19,7 @@ struct AddEmailView: View {
                 .padding(.top)
             Text("You'll use this e-mail to sign in to your account")
                 .font(.footnote)
-                .foregroundColor(.gray)
+				.foregroundColor(.green)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             TextField("E-mail", text: $viewModel.email)
@@ -35,7 +35,7 @@ struct AddEmailView: View {
                 Text("Next")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+					.foregroundStyle(Color.customBlack())
                     .frame(width: 360, height: 44)
                     .background(Color(.systemBlue))
                     .cornerRadius(8)
