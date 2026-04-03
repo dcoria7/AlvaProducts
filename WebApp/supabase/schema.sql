@@ -106,6 +106,23 @@ create policy "services_read_public" on public.services
 create policy "services_write" on public.services
   for all using (true);                -- validado en servidor
 
+-- ── Realtime ─────────────────────────────────────────────────
+-- Requerido para que Supabase Realtime envíe datos completos del cambio
+ALTER TABLE public.venues REPLICA IDENTITY FULL;
+ALTER TABLE public.menu_items REPLICA IDENTITY FULL;
+ALTER TABLE public.services REPLICA IDENTITY FULL;
+
+-- Agregar a la publicación de Realtime
+ALTER PUBLICATION supabase_realtime ADD TABLE public.venues;
+
+-- Permisos para usuarios anónimos (Realtime)
+GRANT SELECT ON public.venues TO anon;
+GRANT SELECT ON public.venues TO authenticated;
+GRANT SELECT ON public.menu_items TO anon;
+GRANT SELECT ON public.menu_items TO authenticated;
+GRANT SELECT ON public.services TO anon;
+GRANT SELECT ON public.services TO authenticated;
+
 -- ── Índices para performance ──────────────────────────────────
 create index venues_is_active_idx on public.venues(is_active);
 create index venues_status_idx on public.venues(status);
