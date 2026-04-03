@@ -53,6 +53,7 @@ function rowToVenue(row: Record<string, unknown>): Venue {
       views: row.views as number,
       whatsapp_taps: row.whatsapp_taps as number,
     },
+    telegram_chat_id: (row.telegram_chat_id as string | null) ?? null,
   };
 }
 

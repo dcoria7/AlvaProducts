@@ -46,6 +46,7 @@ export interface Venue {
   stats: VenueStats;
   tags: string[];
   owner_id: string;
+  telegram_chat_id: string | null;
   created_at: string;
   updated_at: string;
 }
