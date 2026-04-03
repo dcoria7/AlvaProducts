@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Venue, MenuItem, Service } from "@/types";
 import { getVenueById, getMenuItems, getServices, incrementVenueViews, incrementWhatsappTaps } from "@/services/venues";
+import { supabase } from "@/lib/supabase";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { ArrowLeft, MapPin, MessageCircle, Loader2, UtensilsCrossed, Wrench } from "lucide-react";
 
@@ -98,6 +99,38 @@ export function VenueDetail({ venueId }: VenueDetailProps) {
       setLoading(false);
     }
     load();
+  }, [venueId]);
+
+  // Realtime — actualiza estado y menú del día sin recargar
+  useEffect(() => {
+    const channel = supabase
+      .channel(`venue-${venueId}`)
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "venues", filter: `id=eq.${venueId}` },
+        (payload) => {
+          const u = payload.new as Record<string, unknown>;
+          setVenue((prev) => {
+            if (!prev) return prev;
+            return {
+              ...prev,
+              status: u.status as Venue["status"],
+              status_updated_at: u.status_updated_at as string,
+              contact: { ...prev.contact, phone: u.phone as string },
+              daily_update: u.daily_text || u.daily_image_url
+                ? {
+                    text: u.daily_text as string | null,
+                    image_url: u.daily_image_url as string | null,
+                    updated_at: u.daily_updated_at as string,
+                  }
+                : null,
+            };
+          });
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
   }, [venueId]);
 
   if (loading) return <div className="flex items-center justify-center min-h-screen"><Loader2 className="w-8 h-8 animate-spin text-gray-300" /></div>;

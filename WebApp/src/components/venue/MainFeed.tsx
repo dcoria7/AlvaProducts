@@ -8,6 +8,7 @@ import { getVenuesSortedByDistance, getActiveVenues, incrementWhatsappTaps } fro
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { MessageCircle, Loader2, MapPin, Navigation } from "lucide-react";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { supabase } from "@/lib/supabase";
 
 const RADIUS_OPTIONS = [
   { label: "1 km", value: 1 },
@@ -128,6 +129,39 @@ export function MainFeed() {
       .then(setVenues)
       .catch(console.error);
   }, [coordinates, geoLoading, radius]);
+
+  // Realtime — actualiza el venue afectado sin recargar toda la lista
+  useEffect(() => {
+    const channel = supabase
+      .channel("venues-realtime")
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "venues" },
+        (payload) => {
+          const updated = payload.new as Record<string, unknown>;
+          setVenues((prev) =>
+            prev.map((v) => {
+              if (v.id !== updated.id) return v;
+              return {
+                ...v,
+                status: updated.status as Venue["status"],
+                status_updated_at: updated.status_updated_at as string,
+                daily_update: updated.daily_text || updated.daily_image_url
+                  ? {
+                      text: updated.daily_text as string | null,
+                      image_url: updated.daily_image_url as string | null,
+                      updated_at: updated.daily_updated_at as string,
+                    }
+                  : null,
+              };
+            })
+          );
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, []);
 
   const open = venues.filter((v) => v.status === "open");
   const closed = venues.filter((v) => v.status === "closed");
