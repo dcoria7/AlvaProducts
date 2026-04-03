@@ -1,0 +1,23 @@
+import type { Metadata } from "next";
+import { Geist } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import "./globals.css";
+
+const geist = Geist({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "ClickLocal – Negocios cerca de ti",
+  description: "Descubre negocios locales, a puerta cerrada y ambulantes cerca de ti.",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <ClerkProvider>
+      <html lang="es">
+        <body className={`${geist.className} antialiased bg-gray-50`}>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
+  );
+}
